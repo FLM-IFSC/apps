@@ -57,13 +57,13 @@
                 extend: {
                     colors: {
                         ifsc: {
-                            green: '#32BF5E',
+                            green: '#32a041',
                             red: '#C8191E',
                             dark: '#1f2937'
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Open Sans', 'sans-serif'],
                     }
                 }
             }
@@ -71,10 +71,10 @@
     </script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             background-color: #f3f4f6;
             color: #1f2937;
         }
@@ -97,7 +97,7 @@
             width: 100%;
         }
         .pdf-title { font-size: 13pt; font-weight: bold; text-align: center; margin-bottom: 20px; text-transform: uppercase; }
-        .pdf-section-title { font-weight: bold; font-size: 11.5pt; background-color: #f3f4f6; border-left: 4px solid #32BF5E; padding: 4px 8px; margin-top: 15px; margin-bottom: 10px; }
+        .pdf-section-title { font-weight: bold; font-size: 11.5pt; background-color: #f3f4f6; border-left: 4px solid #32a041; padding: 4px 8px; margin-top: 15px; margin-bottom: 10px; }
         .pdf-p { text-align: justify; margin-bottom: 12px; }
         .pdf-ul { list-style-type: disc; padding-left: 25px; text-align: justify; margin-bottom: 12px; }
         .pdf-ul li { margin-bottom: 6px; }
@@ -109,15 +109,18 @@
     <div id="app" class="min-h-screen flex flex-col">
         
         <!-- Header IFSC -->
-        <header class="bg-[#2F9E41] text-white shadow-lg border-b-4 border-[#C8191E]">
-            <div class="max-w-5xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <div class="border-2 border-white p-2 rounded-lg text-center font-bold tracking-widest bg-white text-[#2F9E41]">
-                        <div class="text-2xl leading-none">IFSC</div>
-                    </div>
-                    <div>
-                        <h1 class="text-2xl md:text-3xl font-bold tracking-tight">Gerador de Termos</h1>
-                        <p class="text-green-100 font-medium">Consentimento de Dados (LGPD e ECA Digital)</p>
+        <header class="bg-ifsc-green text-white shadow-lg border-b-4 border-ifsc-red">
+            <div class="max-w-5xl mx-auto px-4 py-4 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4 sm:gap-6 flex-wrap sm:flex-nowrap justify-center sm:justify-start text-center sm:text-left">
+                    <a href="https://www.ifsc.edu.br" target="_blank" rel="noopener noreferrer" title="Instituto Federal de Santa Catarina" class="flex-shrink-0 transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-white/50 rounded-lg p-1">
+                        <img src="img/IFSC_horizontal_branco_fundo_transparente.png" 
+                             alt="Logo Instituto Federal de Santa Catarina" 
+                             class="h-10 sm:h-12 md:h-14 w-auto object-contain"
+                             width="1200" height="411" />
+                    </a>
+                    <div class="border-t sm:border-t-0 sm:border-l border-white/25 pt-2 sm:pt-0 sm:pl-6">
+                        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">Gerador de Termos</h1>
+                        <p class="text-xs sm:text-sm text-green-100 font-medium">Consentimento de Dados (LGPD e ECA Digital)</p>
                     </div>
                 </div>
             </div>
@@ -131,15 +134,15 @@
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Termo Gerado com Sucesso!</h2>
-                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">O download do PDF foi iniciado. Assine-o através do <strong>gov.br</strong> e envie à coordenadoria responsável no seu campus.</p>
+                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">O download do PDF foi iniciado. Assine-o através do <strong>assinador.iti.br</strong> e envie em formato digital ao responsável no seu campus (versões assinadas digitalmente e impressas não têm validade).</p>
                 
-                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8 text-left inline-block max-w-2xl mx-auto">
-                    <h3 class="font-bold text-yellow-800 mb-1">Próximos Passos (Assinatura Eletrônica):</h3>
-                    <ol class="list-decimal list-inside text-yellow-800 space-y-1 mt-2">
-                        <li>Acesse o <a href="https://assinador.iti.br/" target="_blank" class="underline font-bold">Assinador Gov.br (assinador.iti.br)</a>.</li>
-                        <li>Envie o arquivo PDF baixado.</li>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8 text-left inline-block max-w-2xl mx-auto text-sm">
+                    <h3 class="font-semibold text-yellow-800 mb-1">Próximos passos para assinar:</h3>
+                    <ol class="list-decimal list-inside text-yellow-800 space-y-1 mt-1">
+                        <li>Acesse o <a href="https://assinador.iti.br/" target="_blank" class="underline font-semibold">assinador.iti.br</a>.</li>
+                        <li>Envie o arquivo PDF que você acabou de baixar.</li>
                         <li>Posicione a assinatura no final da página.</li>
-                        <li>Confirme usando sua conta Prata ou Ouro.</li>
+                        <li>Assine utilizando sua conta Gov.br (nível prata ou ouro).</li>
                     </ol>
                 </div>
                 
@@ -152,53 +155,53 @@
 
             <div v-show="!success" class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
                 
-                <div class="p-6 md:p-8 bg-blue-50/50 border-b border-blue-100">
-                    <h3 class="text-blue-900 font-bold mb-2 uppercase text-sm md:text-base tracking-wide flex items-center gap-2">
+                <div class="p-6 md:p-8 bg-blue-50/40 border-b border-blue-100 text-sm md:text-base">
+                    <h3 class="text-blue-900 font-semibold mb-2 text-sm md:text-base flex items-center gap-2">
                         <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Aviso de Privacidade: Geração de Termo Digital
+                        Aviso de privacidade: geração de termo digital
                     </h3>
-                    <p class="text-blue-900 leading-relaxed text-sm md:text-base mb-4 text-justify">
-                        Os dados preenchidos neste formulário (Nome e CPF) servem exclusivamente para gerar o PDF de consentimento para assinatura no <strong>gov.br</strong>. Estes dados pessoais <span class="font-bold underline cursor-help" title="Conforme Decreto nº 10.543/2020 e Art. 11 da LGPD">não ficam armazenados</span> em nosso banco de dados após a geração do arquivo e não são compartilhados with terceiros.
+                    <p class="text-blue-800 leading-relaxed mb-3">
+                        Os dados inseridos (nome e CPF) servem apenas para criar o arquivo PDF. Suas informações não são salvas no banco de dados do IFSC após a geração do documento e não são compartilhadas.
                     </p>
-                    <p class="text-blue-900 leading-relaxed text-sm md:text-base text-justify">
-                        O tratamento do formulário segue estritamente as diretrizes de segurança e finalidade da Lei Geral de Proteção de Dados (LGPD). Quando aplicável a menores, a legislação do <strong>ECA Digital (Lei 15.211/2025)</strong> é agregada à finalidade exigindo preenchimento dos responsáveis para plataformas de nuvem.
+                    <p class="text-blue-800 leading-relaxed">
+                        O processo respeita as diretrizes de privacidade da LGPD. Para estudantes menores de 18 anos, são coletados os dados do responsável legal conforme as diretrizes do ECA Digital para uso das plataformas em nuvem.
                     </p>
                 </div>
 
                 <form @submit.prevent="generatePDF" class="p-6 md:p-8 space-y-8">
                     
-                    <!-- Passo 1: Perfil de Idade -->
+                    <!-- Passo 1: Perfil de idade -->
                     <section>
-                        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                            <span class="bg-[#2F9E41] text-white w-7 h-7 rounded-full inline-flex items-center justify-center text-sm">1</span> 
-                            Maioridade do Estudante
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <span class="bg-ifsc-green text-white w-7 h-7 rounded-full inline-flex items-center justify-center text-sm">1</span> 
+                            Idade do estudante
                         </h2>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <label class="relative flex cursor-pointer rounded-xl border p-4 shadow-sm focus:outline-none transition-all"
-                                   :class="form.idade_perfil === 'maior' ? 'border-[#2F9E41] ring-1 ring-[#2F9E41] bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
+                                   :class="form.idade_perfil === 'maior' ? 'border-ifsc-green ring-1 ring-ifsc-green bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
                                 <input type="radio" value="maior" v-model="form.idade_perfil" class="sr-only" @change="handleIdadeChange">
                                 <span class="flex flex-1 items-center gap-3">
                                     <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-700">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                                     </div>
                                     <span class="flex flex-col">
-                                        <span class="block text-sm font-bold text-gray-900 uppercase">Maior de Idade (18+ anos)</span>
-                                        <span class="mt-1 text-xs text-gray-500">O próprio estudante assume e assina este termo (Aplica-se apenas Regras LGPD).</span>
+                                        <span class="block text-sm font-semibold text-gray-900">Maior de idade (18 anos ou mais)</span>
+                                        <span class="mt-1 text-xs text-gray-500">O próprio estudante assina o termo (conforme regras gerais da LGPD).</span>
                                     </span>
                                 </span>
                             </label>
 
                             <label class="relative flex cursor-pointer rounded-xl border p-4 shadow-sm focus:outline-none transition-all"
-                                   :class="form.idade_perfil === 'menor' ? 'border-[#2F9E41] ring-1 ring-[#2F9E41] bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
+                                   :class="form.idade_perfil === 'menor' ? 'border-ifsc-green ring-1 ring-ifsc-green bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
                                 <input type="radio" value="menor" v-model="form.idade_perfil" class="sr-only" @change="handleIdadeChange">
                                 <span class="flex flex-1 items-center gap-3">
                                     <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                                     </div>
                                     <span class="flex flex-col">
-                                        <span class="block text-sm font-bold text-gray-900 uppercase">Menor de Idade (Antes de completar 18 anos)</span>
-                                        <span class="mt-1 text-xs text-gray-500">Responsável legal deve assinar. (Aplica-se Regras LGPD e ECA Digital).</span>
+                                        <span class="block text-sm font-semibold text-gray-900">Menor de idade (menos de 18 anos)</span>
+                                        <span class="mt-1 text-xs text-gray-500">O responsável legal deve assinar o termo (conforme a LGPD e o ECA Digital).</span>
                                     </span>
                                 </span>
                             </label>
@@ -206,43 +209,43 @@
                     </section>
 
                     <div v-if="form.idade_perfil" class="fade-enter-active">
-                        <!-- Passo 2: O que deseja gerar (Somente visível/editável para Menores, Maiores forçam Biometria) -->
+                        <!-- Passo 2: O que deseja gerar -->
                         <section v-if="form.idade_perfil === 'menor'" class="mt-8">
-                            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                <span class="bg-[#2F9E41] text-white w-7 h-7 rounded-full inline-flex items-center justify-center text-sm">2</span> 
-                                Finalidade do Termo
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                                <span class="bg-ifsc-green text-white w-7 h-7 rounded-full inline-flex items-center justify-center text-sm">2</span> 
+                                Finalidade do termo
                             </h2>
                             
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <label class="relative flex cursor-pointer rounded-xl border p-4 shadow-sm focus:outline-none transition-all"
-                                    :class="form.tipo === 'ambos' ? 'border-[#2F9E41] ring-1 ring-[#2F9E41] bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
+                                    :class="form.tipo === 'ambos' ? 'border-ifsc-green ring-1 ring-ifsc-green bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
                                     <input type="radio" value="ambos" v-model="form.tipo" class="sr-only">
                                     <span class="flex flex-1">
                                         <span class="flex flex-col">
-                                            <span class="block text-sm font-bold text-gray-900 uppercase">Completo (Recomendado)</span>
-                                            <span class="mt-2 text-xs text-gray-500">Inclui Biometria (Acesso Físico - LGPD) e Nuvem/ECA Digital (Plataformas Digitais).</span>
+                                            <span class="block text-sm font-semibold text-gray-900">Completo (recomendado)</span>
+                                            <span class="mt-2 text-xs text-gray-500">Permissão para biometria (acesso físico ao câmpus) e nuvem (plataformas digitais).</span>
                                         </span>
                                     </span>
                                 </label>
 
                                 <label class="relative flex cursor-pointer rounded-xl border p-4 shadow-sm focus:outline-none transition-all"
-                                    :class="form.tipo === 'biometria' ? 'border-[#2F9E41] ring-1 ring-[#2F9E41] bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
+                                    :class="form.tipo === 'biometria' ? 'border-ifsc-green ring-1 ring-ifsc-green bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
                                     <input type="radio" value="biometria" v-model="form.tipo" class="sr-only">
                                     <span class="flex flex-1">
                                         <span class="flex flex-col">
-                                            <span class="block text-sm font-bold text-gray-900 uppercase">Somente Biometria</span>
-                                            <span class="mt-2 text-xs text-gray-500">Apenas LGPD para biometria física de catracas/laboratórios.</span>
+                                            <span class="block text-sm font-semibold text-gray-900">Apenas biometria</span>
+                                            <span class="mt-2 text-xs text-gray-500">Autorização restrita para acesso físico por catracas e laboratórios.</span>
                                         </span>
                                     </span>
                                 </label>
                                 
                                 <label class="relative flex cursor-pointer rounded-xl border p-4 shadow-sm focus:outline-none transition-all"
-                                    :class="form.tipo === 'nuvem' ? 'border-[#2F9E41] ring-1 ring-[#2F9E41] bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
+                                    :class="form.tipo === 'nuvem' ? 'border-ifsc-green ring-1 ring-ifsc-green bg-green-50' : 'border-gray-300 hover:bg-gray-50'">
                                     <input type="radio" value="nuvem" v-model="form.tipo" class="sr-only">
                                     <span class="flex flex-1">
                                         <span class="flex flex-col">
-                                            <span class="block text-sm font-bold text-gray-900 uppercase">Somente Nuvem Educacional</span>
-                                            <span class="mt-2 text-xs text-gray-500">Apenas permissão de uso de contas sob base no ECA Digital (Lei 15.211).</span>
+                                            <span class="block text-sm font-semibold text-gray-900">Apenas nuvem educacional</span>
+                                            <span class="mt-2 text-xs text-gray-500">Autorização para uso das contas institucionais de ensino (Google/Microsoft).</span>
                                         </span>
                                     </span>
                                 </label>
@@ -251,51 +254,51 @@
 
                         <section v-else class="mt-8">
                             <div class="bg-gray-50 border-l-4 border-blue-500 p-4 rounded-r-lg text-sm text-gray-700">
-                                <strong>Nota Jurídica (Maioridade Civil):</strong> Como titular maior de idade e civilmente capaz, os requisitos excepcionais do ECA Digital e de supervisão parental para contas de nuvem não se aplicam. A finalidade do termo agora será exclusivamente o Consentimento LGPD para coleta de seus <strong>Dados Biométricos</strong> (acesso seguro ao campus). <br/>*(Para acesso às plataformas digitais de ensino, as adesões ocorrem via Termos de Serviço padrão durante os primeiros acessos aos sistemas institucionais).*
+                                Como o estudante é maior de idade, os requisitos do ECA Digital para contas em nuvem não se aplicam aqui. O termo servirá apenas para a autorização de coleta de dados biométricos (para acesso físico ao câmpus).
                             </div>
                         </section>
 
                         <!-- Passo 3: Identificação -->
                         <section class="bg-gray-50 rounded-xl p-6 border border-gray-200 mt-8">
-                            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                <span class="bg-[#2F9E41] text-white w-7 h-7 rounded-full inline-flex items-center justify-center text-sm">{{ form.idade_perfil === 'menor' ? '3' : '2' }}</span> 
-                                Identificação Institucional
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                                <span class="bg-ifsc-green text-white w-7 h-7 rounded-full inline-flex items-center justify-center text-sm">{{ form.idade_perfil === 'menor' ? '3' : '2' }}</span> 
+                                Identificação
                             </h2>
                             
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 
                                 <!-- Se Menor, pede dados do Responsavel -->
                                 <div v-if="form.idade_perfil === 'menor'" class="space-y-4">
-                                    <h3 class="font-semibold text-gray-700">Responsável Legal do Aluno</h3>
+                                    <h3 class="font-semibold text-gray-700">Responsável legal</h3>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo (Responsável)</label>
-                                        <input type="text" v-model="form.responsavel_nome" :required="form.idade_perfil === 'menor'" data-clarity-mask="true" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-[#2F9E41] focus:ring-[#2F9E41] px-4 py-2 border">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nome do responsável</label>
+                                        <input type="text" v-model="form.responsavel_nome" :required="form.idade_perfil === 'menor'" data-clarity-mask="true" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-ifsc-green focus:ring-ifsc-green px-4 py-2 border">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">CPF (Responsável)</label>
-                                        <input type="text" v-model="form.responsavel_cpf" @input="formatCPF('responsavel_cpf')" :required="form.idade_perfil === 'menor'" data-clarity-mask="true" placeholder="000.000.000-00" maxlength="14" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-[#2F9E41] focus:ring-[#2F9E41] px-4 py-2 border" :class="{'border-red-500': errors.responsavel_cpf}">
-                                        <span v-if="errors.responsavel_cpf" class="text-xs text-red-600 mt-1">CPF Inválido</span>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">CPF do responsável</label>
+                                        <input type="text" v-model="form.responsavel_cpf" @input="formatCPF('responsavel_cpf')" :required="form.idade_perfil === 'menor'" data-clarity-mask="true" placeholder="000.000.000-00" maxlength="14" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-ifsc-green focus:ring-ifsc-green px-4 py-2 border" :class="{'border-red-500': errors.responsavel_cpf}">
+                                        <span v-if="errors.responsavel_cpf" class="text-xs text-red-600 mt-1">CPF inválido</span>
                                     </div>
                                 </div>
                                 
                                 <!-- Estudante (sempre) -->
                                 <div class="space-y-4">
-                                    <h3 class="font-semibold text-gray-700">Dados do Estudante</h3>
+                                    <h3 class="font-semibold text-gray-700">Estudante</h3>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
-                                        <input type="text" v-model="form.estudante_nome" required data-clarity-mask="true" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-[#2F9E41] focus:ring-[#2F9E41] px-4 py-2 border">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nome do estudante</label>
+                                        <input type="text" v-model="form.estudante_nome" required data-clarity-mask="true" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-ifsc-green focus:ring-ifsc-green px-4 py-2 border">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">CPF</label>
-                                        <input type="text" v-model="form.estudante_cpf" @input="formatCPF('estudante_cpf')" required data-clarity-mask="true" placeholder="000.000.000-00" maxlength="14" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-[#2F9E41] focus:ring-[#2F9E41] px-4 py-2 border" :class="{'border-red-500': errors.estudante_cpf}">
-                                        <span v-if="errors.estudante_cpf" class="text-xs text-red-600 mt-1">CPF Inválido</span>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">CPF do estudante</label>
+                                        <input type="text" v-model="form.estudante_cpf" @input="formatCPF('estudante_cpf')" required data-clarity-mask="true" placeholder="000.000.000-00" maxlength="14" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-ifsc-green focus:ring-ifsc-green px-4 py-2 border" :class="{'border-red-500': errors.estudante_cpf}">
+                                        <span v-if="errors.estudante_cpf" class="text-xs text-red-600 mt-1">CPF inválido</span>
                                     </div>
                                 </div>
                                 
                                 <div class="md:col-span-2 mt-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Campus</label>
-                                    <select v-model="form.campus" required class="w-full md:w-1/2 rounded-lg border-gray-300 shadow-sm focus:border-[#2F9E41] focus:ring-[#2F9E41] px-4 py-2 border bg-white">
-                                        <option value="" disabled selected>Selecione um campus...</option>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Câmpus</label>
+                                    <select v-model="form.campus" required class="w-full md:w-1/2 rounded-lg border-gray-300 shadow-sm focus:border-ifsc-green focus:ring-ifsc-green px-4 py-2 border bg-white">
+                                        <option value="" disabled selected>Selecione um câmpus...</option>
                                         <option v-for="c in campusList" :key="c" :value="c">{{ c }}</option>
                                     </select>
                                 </div>
@@ -304,58 +307,58 @@
                         
                         <!-- Passo 4: Decisões -->
                         <section class="mt-8">
-                            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                <span class="bg-[#2F9E41] text-white w-7 h-7 rounded-full inline-flex items-center justify-center text-sm">{{ form.idade_perfil === 'menor' ? '4' : '3' }}</span> 
-                                Tomada de Decisão
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                                <span class="bg-ifsc-green text-white w-7 h-7 rounded-full inline-flex items-center justify-center text-sm">{{ form.idade_perfil === 'menor' ? '4' : '3' }}</span> 
+                                Decisões de consentimento
                             </h2>
 
                             <div class="space-y-6">
                                 <!-- Decisão Nuvem (Apenas Menores e Se Selecionado) -->
                                 <div v-if="form.idade_perfil === 'menor' && (form.tipo === 'ambos' || form.tipo === 'nuvem')" class="bg-white border rounded-xl overflow-hidden shadow-sm">
-                                    <div class="bg-gray-100 p-4 border-b font-bold text-gray-800">
-                                        A. Plataformas Educacionais (Google Workspace / Microsoft 365)
+                                    <div class="bg-gray-100 p-4 border-b font-semibold text-gray-800">
+                                        Plataformas educacionais (Google e Microsoft)
                                     </div>
-                                    <div class="p-5 space-y-3">
-                                        <p class="text-sm text-gray-600 mb-4">O IFSC utiliza essas ferramentas operando como Controlador dos dados em um ecossistema seguro e sem anúncios (em linha com o ECA Digital), garantindo o desenvolvimento e comunicação dos estudantes que necessitam de contas institucionais.</p>
+                                    <div class="p-5 space-y-3 text-sm md:text-base">
+                                        <p class="text-sm text-gray-600 mb-4">O IFSC utiliza estas ferramentas de forma escolar e sem anúncios publicitários, ajudando nas atividades pedagógicas e na comunicação.</p>
                                         
-                                        <label class="flex items-center p-3 border rounded hover:bg-gray-50 cursor-pointer" :class="{'border-[#2F9E41] bg-green-50': form.auth_nuvem === 'autorizo'}">
-                                            <input type="radio" v-model="form.auth_nuvem" value="autorizo" required class="w-5 h-5 text-[#2F9E41]">
-                                            <span class="ml-3 font-medium text-gray-800">AUTORIZO a criação de conta e o acesso restrito às plataformas Microsoft/Google institucionais.</span>
+                                        <label class="flex items-center p-3 border rounded hover:bg-gray-50 cursor-pointer" :class="{'border-ifsc-green bg-green-50': form.auth_nuvem === 'autorizo'}">
+                                            <input type="radio" v-model="form.auth_nuvem" value="autorizo" required class="w-5 h-5 text-ifsc-green">
+                                            <span class="ml-3 text-gray-800">Autorizo a criação de conta e o acesso às plataformas Microsoft e Google.</span>
                                         </label>
                                         <label class="flex items-center p-3 border rounded hover:bg-gray-50 cursor-pointer" :class="{'border-red-500 bg-red-50': form.auth_nuvem === 'nao_autorizo'}">
                                             <input type="radio" v-model="form.auth_nuvem" value="nao_autorizo" class="w-5 h-5 text-red-600">
-                                            <span class="ml-3 font-medium text-gray-800">NÃO AUTORIZO e solicitarei o acesso físico isolado no Campus para estudos.</span>
+                                            <span class="ml-3 text-gray-800">Não autorizo (solicitarei acesso físico alternativo para estudos).</span>
                                         </label>
                                     </div>
                                 </div>
 
                                 <!-- Decisão Biometria -->
                                 <div v-if="form.tipo === 'ambos' || form.tipo === 'biometria'" class="bg-white border rounded-xl overflow-hidden shadow-sm">
-                                    <div class="bg-gray-100 p-4 border-b font-bold text-gray-800">
-                                        {{ form.idade_perfil === 'menor' && (form.tipo === 'ambos') ? 'B. ' : '' }}Biometria para Acesso Físico (Catracas e Laboratórios)
+                                    <div class="bg-gray-100 p-4 border-b font-semibold text-gray-800">
+                                        Biometria para acesso físico
                                     </div>
-                                    <div class="p-5 space-y-3">
-                                        <p class="text-sm text-gray-600 mb-4">A imagem facial ou impressão digital será garantida por criptografia em servidores próprios do DATACENTER IFSC. Tem uso exclusivo de segurança e proteção à comunidade do campus, sem compartilhamento ou venda externa e os dados morrem após o fim do curso (LGPD Princípio da Necessidade).</p>
+                                    <div class="p-5 space-y-3 text-sm md:text-base">
+                                        <p class="text-sm text-gray-600 mb-4">O IFSC buscará formas seguras de tratamento para os dados biométricos (leitura facial ou digital), observando os limites das ferramentas de terceiros disponíveis. O uso é restrito para controle de acesso ao câmpus, sem compartilhamento com terceiros não autorizados.</p>
                                         
-                                        <label class="flex items-center p-3 border rounded hover:bg-gray-50 cursor-pointer" :class="{'border-[#2F9E41] bg-green-50': form.auth_biometria === 'autorizo'}">
-                                            <input type="radio" v-model="form.auth_biometria" value="autorizo" required class="w-5 h-5 text-[#2F9E41]">
-                                            <span class="ml-3 font-medium text-gray-800">AUTORIZO o tratamento da biometria facial/digital para controle físico.</span>
+                                        <label class="flex items-center p-3 border rounded hover:bg-gray-50 cursor-pointer" :class="{'border-ifsc-green bg-green-50': form.auth_biometria === 'autorizo'}">
+                                            <input type="radio" v-model="form.auth_biometria" value="autorizo" required class="w-5 h-5 text-ifsc-green">
+                                            <span class="ml-3 text-gray-800">Autorizo a coleta e uso da biometria para controle de acesso físico.</span>
                                         </label>
                                         <label class="flex items-center p-3 border rounded hover:bg-gray-50 cursor-pointer" :class="{'border-red-500 bg-red-50': form.auth_biometria === 'nao_autorizo'}">
                                             <input type="radio" v-model="form.auth_biometria" value="nao_autorizo" class="w-5 h-5 text-red-600">
-                                            <span class="ml-3 font-medium text-gray-800">NÃO AUTORIZO e gerirei acessos junto às portarias.</span>
+                                            <span class="ml-3 text-gray-800">Não autorizo (o acesso ao câmpus deverá ser registrado de forma manual nas portarias).</span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </section>
                         
-                        <div v-if="hasGeneralError" class="text-[#C8191E] font-medium p-4 bg-red-50 rounded-lg text-sm border border-red-200 text-center mt-6">
+                        <div v-if="hasGeneralError" class="text-ifsc-red font-medium p-4 bg-red-50 rounded-lg text-sm border border-red-200 text-center mt-6">
                             Corrija os erros (CPFs inválidos) ou preencha todos os campos obrigatórios antes de gerar o termo.
                         </div>
 
                         <button type="submit" 
-                                class="mt-8 w-full flex justify-center items-center gap-2 bg-[#C8191E] hover:bg-red-800 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                                class="mt-8 w-full flex justify-center items-center gap-2 bg-ifsc-red hover:bg-red-800 text-white font-semibold py-4 px-6 rounded-xl transition-all shadow hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                                 :disabled="isGenerating">
                             <svg v-if="!isGenerating" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                             <span v-if="isGenerating" class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
@@ -367,11 +370,9 @@
                 </form>
             </div>
             
-            <footer class="mt-10 text-center text-gray-500 text-sm">
-                <p class="font-bold mb-1">Aviso Institucional:</p>
-                <p class="mb-2 max-w-3xl mx-auto">Nenhum dado trafega na internet. O PDF é construído localmente (<i lang="en">client-side script</i>). Em conformidade com o <b>Decreto nº 10.543/2020</b>, assinaturas eletrônicas padrão Gov.br têm imediata validade presuntiva para aceite em sistemas educacionais.</p>
-                <p>Proteção de Dados: <a href="https://www.ifsc.edu.br/politica-de-privacidade" target="_blank" class="text-[#2F9E41] hover:underline">Política de Privacidade do IFSC</a> | Dúvidas: <a href="mailto:coord.gestao.dados@ifsc.edu.br" class="text-[#2F9E41] hover:underline">coord.gestao.dados@ifsc.edu.br</a></p>
-                <p class="mt-2 text-xs">Desenvolvido pela Coordenadoria de Gestão de Dados (CGD / DTIC / Reitoria).</p>
+            <footer class="mt-10 text-center text-gray-500 text-sm border-t border-gray-200 pt-6">
+                <p class="mb-2 max-w-3xl mx-auto">Nenhum dado pessoal é salvo na internet durante este processo. O arquivo PDF é gerado inteiramente no seu navegador. As assinaturas feitas pelo portal Gov.br têm validade legal imediata.</p>
+                <p>Dúvidas sobre privacidade: <a href="mailto:encarregado.lgpd@ifsc.edu.br" class="text-ifsc-green hover:underline">encarregado.lgpd@ifsc.edu.br</a> | <a href="https://www.ifsc.edu.br/politica-de-privacidade" target="_blank" class="text-ifsc-green hover:underline">Política de privacidade do IFSC</a></p>
             </footer>
 
             <!-- Área oculta para renderização do PDF pelo html2pdf -->
@@ -380,7 +381,7 @@
                     <div style="text-align: center; border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 15px;">
                         <p style="margin: 0; font-size: 10pt;">MINISTÉRIO DA EDUCAÇÃO</p>
                         <p style="margin: 0; font-size: 10pt;">SECRETARIA DE EDUCAÇÃO PROFISSIONAL E TECNOLÓGICA</p>
-                        <p style="margin: 0; font-weight: bold; font-size: 11pt;">INSTITUTO FEDERAL DE SANTA CATARINA - {{ form.campus ? 'CAMPUS ' + form.campus.toUpperCase() : 'IFSC' }}</p>
+                        <p style="margin: 0; font-weight: bold; font-size: 11pt;">INSTITUTO FEDERAL DE SANTA CATARINA{{ form.campus ? ' - ' + (form.campus.toLowerCase() === 'reitoria' ? 'Reitoria' : 'Câmpus ' + form.campus) : '' }}</p>
                     </div>
                     
                     <!-- MODELO PARA MAIORES DE IDADE -->
@@ -391,17 +392,22 @@
                             Pelo presente termo, eu, <strong>{{ form.estudante_nome }}</strong>, titular do CPF nº <strong>{{ form.estudante_cpf }}</strong>, sendo maior de idade, <strong>AUTORIZO</strong> de forma clara e objetiva que o IFSC colete e utilize meus dados biométricos (como leitura facial ou impressão digital), conforme as diretrizes da Lei Geral de Proteção de Dados Pessoais (LGPD).
                         </p>
                         
+                        <p class="pdf-p">
+                            <strong>Estudante:</strong> {{ form.estudante_nome }} (CPF: {{ form.estudante_cpf }})<br>
+                            <strong>Câmpus / Unidade:</strong> {{ form.campus }} &nbsp;|&nbsp; <strong>Cidade:</strong> {{ campusData[form.campus] }}
+                        </p>
+                        
                         <div style="margin-top: 15px;">
-                            <p class="pdf-p"><strong>Para que serve:</strong> A coleta da minha biometria atende exclusivamente à finalidade de controlar o acesso físico às catracas e ambientes restritos (laboratórios) do Campus, visando garantir a segurança da comunidade acadêmica e resguardar o patrimônio do IFSC.</p>
+                            <p class="pdf-p"><strong>Para que serve:</strong> A coleta da minha biometria atende exclusivamente à finalidade de controlar o acesso físico às catracas e ambientes restritos (laboratórios) do Câmpus, visando garantir a segurança da comunidade acadêmica e resguardar o patrimônio do IFSC.</p>
                             
-                            <p class="pdf-p"><strong>Como é protegido (Tratamento):</strong> O dado coletado (imagem facial ou impressão digital) não é mantido como uma foto comum. Ele é convertido pela equipe de TI em um código matemático seguro (criptografado) armazenado somente em servidores próprios restritos do IFSC. Não há venda nem compartilhamento de biometria com organizações externas, públicas ou privadas, exceto por ordem judicial.</p>
+                            <p class="pdf-p"><strong>Como é protegido (Tratamento):</strong> O IFSC buscará adotar formas seguras de tratamento para o dado coletado (conversão em código matemático e armazenamento), observando os limites das ferramentas de terceiros disponíveis e das soluções técnicas contratadas. Os dados são de uso restrito, sem compartilhamento com organizações externas não autorizadas.</p>
                             
                             <p class="pdf-p"><strong>Tempo de Guarda (Necessidade LGPD):</strong> A biometria protegida é excluída permanentemente dos sistemas de catraca assim que o meu vínculo com a instituição for encerrado. Relatórios em texto de passagem em catraca (logs) seguirão os prazos legais de guarda definidos pelo Arquivo Nacional.</p>
 
                             <p class="pdf-p"><strong>Meus Direitos:</strong> Tenho ciência de que o IFSC tratará meus dados de maneira segura e compatível com a LGPD. Entendo também que poderei solicitar verificação, alteração ou revogar minha autorização a qualquer momento pelo e-mail: encarregado.lgpd@ifsc.edu.br.</p>
                         </div>
                         
-                        <p style="margin-top: 40px; text-align: right; margin-bottom: 60px;">{{ form.campus || 'Local' }}, {{ currentDate }}.</p>
+                        <p style="margin-top: 40px; text-align: right; margin-bottom: 60px;">{{ campusData[form.campus] || 'Local' }}, {{ currentDate }}.</p>
                         
                         <div style="text-align: center;">
                             <p style="border-top: 1px solid #000; display: inline-block; padding: 0 40px; margin: 0;">Assinatura do Titular</p>
@@ -420,7 +426,8 @@
                         
                         <p class="pdf-p">
                             <strong>Responsável Legal:</strong> {{ form.responsavel_nome }} (CPF: {{ form.responsavel_cpf }})<br>
-                            <strong>Estudante:</strong> {{ form.estudante_nome }} (CPF: {{ form.estudante_cpf }})
+                            <strong>Estudante:</strong> {{ form.estudante_nome }} (CPF: {{ form.estudante_cpf }})<br>
+                            <strong>Câmpus / Unidade:</strong> {{ form.campus }} &nbsp;|&nbsp; <strong>Cidade:</strong> {{ campusData[form.campus] }}
                         </p>
                         
                         <!-- SEÇÃO A: NUVEM (ECA DIGITAL) -->
@@ -445,9 +452,9 @@
                         <div v-if="form.tipo === 'ambos' || form.tipo === 'biometria'" style="margin-top: 15px;">
                             <h2 class="pdf-section-title">{{ form.tipo === 'ambos' ? 'B. ' : '' }}Cadastro de Biometria e Acesso Seguro</h2>
                             
-                            <p class="pdf-p"><strong>Para que serve:</strong> Focado no melhor interesse do menor, a biometria atende exclusivamente à finalidade de controlar o acesso físico às catracas e laboratórios, protegendo o estudante de acesso de terceiros não autorizados ao Campus.</p>
+                            <p class="pdf-p"><strong>Para que serve:</strong> Focado no melhor interesse do menor, a biometria atende exclusivamente à finalidade de controlar o acesso físico às catracas e laboratórios, protegendo o estudante de acesso de terceiros não autorizados ao Câmpus.</p>
                             
-                            <p class="pdf-p"><strong>Como é protegido (Tratamento):</strong> O dado coletado é convertido pela equipe de TI em um código matemático criptografado (seguro), armazenado somente em servidores restritos do IFSC. Não há compartilhamento com organizações externas.</p>
+                            <p class="pdf-p"><strong>Como é protegido (Tratamento):</strong> O IFSC buscará adotar formas seguras de proteção e armazenamento, observando os limites das ferramentas de terceiros disponíveis e das soluções técnicas contratadas. Não há compartilhamento com organizações externas não autorizadas.</p>
 
                             <p class="pdf-p"><strong>Tempo de Guarda (Necessidade LGPD):</strong> A biometria criptografada será apagada de forma permanente assim que o aluno concluir o curso ou perder o vínculo com a escola. Serão mantidos por maior prazo apenas os registros em texto dos relatórios de passagem da catraca para eventual segurança e controle legal.</p>
 
@@ -464,7 +471,7 @@
                             Eu, pai, mãe ou responsável legal identificado acima, declaro que compreendi as finalidades informadas e dou minha decisão (X) de forma livre e inequívoca. Tenho ciência de que, a qualquer tempo, poderei solicitar revisão ou revogar esta autorização entrando em contato com o encarregado oficial de dados no e-mail: encarregado.lgpd@ifsc.edu.br.
                         </p>
                         
-                        <p style="margin-top: 25px; text-align: right; margin-bottom: 40px;">{{ form.campus || '_________________________' }}, {{ currentDate }}.</p>
+                        <p style="margin-top: 25px; text-align: right; margin-bottom: 40px;">{{ campusData[form.campus] || '_________________________' }}, {{ currentDate }}.</p>
                         
                         <div style="text-align: center;">
                             <p style="border-top: 1px solid #000; display: inline-block; padding: 0 40px; margin: 0;">Assinatura do Responsável Legal</p>
@@ -498,12 +505,32 @@
                         responsavel_cpf: false,
                         estudante_cpf: false
                     },
-                    campusList: [
-                        "Araranguá", "Caçador", "Canoinhas", "Chapecó", "Criciúma", "Concórdia", 
-                        "Florianópolis", "Gaspar", "Itajaí", "Jaraguá do Sul", "Joinville", 
-                        "Lages", "Palhoça", "São Carlos", "São Francisco do Sul", "São José", 
-                        "São Lourenço do Oeste", "Tijucas", "Tubarão", "Urupema", "Xanxerê"
-                    ],
+                    campusData: {
+                        "Araranguá": "Araranguá",
+                        "Caçador": "Caçador",
+                        "Canoinhas": "Canoinhas",
+                        "Chapecó": "Chapecó",
+                        "Criciúma": "Criciúma",
+                        "Florianópolis - Centro": "Florianópolis",
+                        "Florianópolis - Continente": "Florianópolis",
+                        "Garopaba": "Garopaba",
+                        "Gaspar": "Gaspar",
+                        "Itajaí": "Itajaí",
+                        "Jaraguá do Sul - Centro": "Jaraguá do Sul",
+                        "Jaraguá do Sul - Rau": "Jaraguá do Sul",
+                        "Joinville": "Joinville",
+                        "Lages": "Lages",
+                        "Palhoça Bilíngue": "Palhoça",
+                        "Reitoria": "Florianópolis",
+                        "São Carlos": "São Carlos",
+                        "São José": "São José",
+                        "São Lourenço do Oeste": "São Lourenço do Oeste",
+                        "São Miguel do Oeste": "São Miguel do Oeste",
+                        "Tijucas": "Tijucas",
+                        "Tubarão": "Tubarão",
+                        "Urupema": "Urupema",
+                        "Xanxerê": "Xanxerê"
+                    },
                     success: false,
                     isGenerating: false,
                     hasGeneralError: false
@@ -512,6 +539,9 @@
             computed: {
                 currentDate() {
                     return new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+                },
+                campusList() {
+                    return Object.keys(this.campusData);
                 }
             },
             methods: {
