@@ -28,7 +28,7 @@
         "id": "agent-cgd",
         "name": "CGD - Governança de TI",
         "url": "https://gemini.google.com/gem/1QNvQjzJVhZF8B71gJBdX_0G3_HrU4Fyb?usp=sharing",
-        "description": "Especialista em Governança de TI do IFSC. Fornece respostas técnicas e precisas estritamente baseadas nas normativas oficiais do IFSC utilizando NotebookLM para pesquisa e referência direta.",
+        "description": "Especialista em Governança de TI do IFSC. Fornece respostas técnicas e precisas estritamente baseadas nas normativas oficiais do IFSC utilizando Notebook para pesquisa e referência direta.",
         "tags": ["Servidores"]
       }
     ]

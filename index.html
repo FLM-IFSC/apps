@@ -113,7 +113,7 @@
 
     <!-- ===== Cabeçalho Oficial do IFSC ===== -->
     <header class="bg-white/95 dark:bg-[#121824]/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30 shadow-xs">
-      <div class="container mx-auto px-4 sm:px-6 py-2.5 max-w-7xl">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-2.5 max-w-[1600px] w-full">
         <div class="flex items-center justify-between gap-4">
           
           <!-- Logo Oficial do Manual da Marca IFSC + Identificação da Unidade -->
@@ -188,38 +188,46 @@
     </header>
 
     <!-- ===== Área Principal de Aplicações ===== -->
-    <main class="container mx-auto px-4 sm:px-6 py-4 flex-grow max-w-7xl">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-5 flex-grow max-w-[1600px] w-full">
       
       <!-- Barra de Controle: Navegação por 4 Abas Institucionais (100% Largura Horizontal) -->
-      <nav aria-label="Abas do Portal" class="w-full mb-4">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-gray-200/80 dark:bg-gray-800/80 border border-gray-300/80 dark:border-gray-700/80 shadow-inner w-full">
+      <nav aria-label="Abas do Portal" class="w-full mb-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 p-1.5 sm:p-2 rounded-2xl bg-gray-200/80 dark:bg-gray-800/80 border border-gray-300/80 dark:border-gray-700/80 shadow-inner w-full">
           
           <!-- Aba 1: Apps usando ai.studio -->
-          <button id="tab-tools" type="button" role="tab" aria-selected="true" class="tab-btn w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 select-none border">
-            <img src="/favicon.svg" alt="IFSC" class="w-4 h-4 object-contain shrink-0" />
-            <span class="truncate">Apps usando ai.studio</span>
-            <span id="tab-tools-count" class="text-[10px] px-2 py-0.5 rounded-full font-extrabold shrink-0">12</span>
+          <button id="tab-tools" type="button" role="tab" aria-selected="true" class="tab-btn w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center sm:justify-between lg:justify-center gap-2.5 select-none border">
+            <div class="flex items-center gap-2 min-w-0">
+              <img src="/favicon.svg" alt="IFSC" class="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain shrink-0" />
+              <span class="font-bold tracking-tight whitespace-nowrap">Apps usando ai.studio</span>
+            </div>
+            <span id="tab-tools-count" class="text-[11px] px-2 py-0.5 rounded-full font-extrabold shrink-0">12</span>
           </button>
 
           <!-- Aba 2: Agentes usando Gems -->
-          <button id="tab-experts" type="button" role="tab" aria-selected="false" class="tab-btn w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 select-none border">
-            <img src="https://www.gstatic.com/images/branding/productlogos/gemini/v1/web-96dp/logo_gemini_color_1x_web_96dp.png" alt="Gemini" class="w-4 h-4 object-contain shrink-0" />
-            <span class="truncate">Agentes usando Gems</span>
-            <span id="tab-experts-count" class="text-[10px] px-2 py-0.5 rounded-full font-extrabold shrink-0">4</span>
+          <button id="tab-experts" type="button" role="tab" aria-selected="false" class="tab-btn w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center sm:justify-between lg:justify-center gap-2.5 select-none border">
+            <div class="flex items-center gap-2 min-w-0">
+              <img src="https://www.gstatic.com/images/branding/productlogos/gemini/v1/web-96dp/logo_gemini_color_1x_web_96dp.png" alt="Gemini" class="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain shrink-0" />
+              <span class="font-bold tracking-tight whitespace-nowrap">Agentes usando Gems</span>
+            </div>
+            <span id="tab-experts-count" class="text-[11px] px-2 py-0.5 rounded-full font-extrabold shrink-0">4</span>
           </button>
 
           <!-- Aba 3: Google for Education (IA Tools) -->
-          <button id="tab-google" type="button" role="tab" aria-selected="false" class="tab-btn w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 select-none border" title="Aplicações de Inteligência Artificial do Google for Education e Labs">
-            <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/google.png" alt="Google" class="w-4 h-4 object-contain shrink-0" />
-            <span class="truncate">Google for Education (IA Tools)</span>
-            <span id="tab-google-count" class="text-[10px] px-2 py-0.5 rounded-full font-extrabold shrink-0">15</span>
+          <button id="tab-google" type="button" role="tab" aria-selected="false" class="tab-btn w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center sm:justify-between lg:justify-center gap-2.5 select-none border" title="Aplicações de Inteligência Artificial do Google for Education e Labs">
+            <div class="flex items-center gap-2 min-w-0">
+              <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/google.png" alt="Google" class="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain shrink-0" />
+              <span class="font-bold tracking-tight whitespace-nowrap">Google for Education (IA Tools)</span>
+            </div>
+            <span id="tab-google-count" class="text-[11px] px-2 py-0.5 rounded-full font-extrabold shrink-0">15</span>
           </button>
 
           <!-- Aba 4: Microsoft 365 Education (A1) -->
-          <button id="tab-microsoft" type="button" role="tab" aria-selected="false" class="tab-btn w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 select-none border" title="Microsoft 365 Education Plano A1 - Office Web">
-            <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/microsoft-copilot.png" alt="Microsoft Copilot" class="w-4 h-4 object-contain shrink-0" />
-            <span class="truncate">Microsoft 365 Education (A1)</span>
-            <span id="tab-microsoft-count" class="text-[10px] px-2 py-0.5 rounded-full font-extrabold shrink-0">13</span>
+          <button id="tab-microsoft" type="button" role="tab" aria-selected="false" class="tab-btn w-full px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center sm:justify-between lg:justify-center gap-2.5 select-none border" title="Microsoft 365 Education Plano A1 - Office Web">
+            <div class="flex items-center gap-2 min-w-0">
+              <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/microsoft-copilot.png" alt="Microsoft Copilot" class="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain shrink-0" />
+              <span class="font-bold tracking-tight whitespace-nowrap">Microsoft 365 Education (A1)</span>
+            </div>
+            <span id="tab-microsoft-count" class="text-[11px] px-2 py-0.5 rounded-full font-extrabold shrink-0">13</span>
           </button>
         </div>
       </nav>
@@ -283,7 +291,7 @@
       </div>
 
       <!-- Grade de Aplicativos -->
-      <div id="apps-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
+      <div id="apps-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-4.5">
         <!-- Cards inseridos dinamicamente -->
       </div>
 
@@ -362,7 +370,7 @@
 
     <!-- ===== Rodapé Institucional Conforme Diretrizes IFSC ===== -->
     <footer class="bg-white border-t border-gray-200 dark:bg-[#121824] dark:border-gray-800 pt-8 pb-6 mt-auto">
-      <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 max-w-[1600px] w-full">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-8 border-b border-gray-100 dark:border-gray-800/80">
           
           <!-- Coluna 1: Marca Vertical Oficial do IFSC & Coordenação (Esquerda) -->
@@ -719,7 +727,7 @@
                 url: "https://gemini.google.com/gem/1QNvQjzJVhZF8B71gJBdX_0G3_HrU4Fyb?usp=sharing",
                 badge: "Governança TI",
                 iconUrl: `${CDN_ICONS}/google-gemini.png`,
-                description: "Respostas baseadas estritamente nas normativas oficiais de TI do IFSC com base de RAG do NotebookLM."
+                description: "Respostas baseadas estritamente nas normativas oficiais de TI do IFSC com base de RAG do Notebook."
               }
             ]
           }
@@ -740,9 +748,9 @@
                 description: "Assistente multimodal inteligente para análise de documentos, elaboração pedagógica e tutoria personalizada."
               },
               {
-                id: "g-notebooklm",
-                name: "NotebookLM",
-                url: "https://notebooklm.google.com/",
+                id: "g-notebook",
+                name: "Google Notebook",
+                url: "https://notebook.google.com/",
                 badge: "Caderno & RAG",
                 iconUrl: "https://www.gstatic.com/images/branding/productlogos/notebooklm/v1/web-96dp/logo_notebooklm_color_1x_web_96dp.png",
                 description: "Caderno inteligente baseado em IA que sintetiza fontes, PDFs e documentos em notas e podcasts didáticos."
