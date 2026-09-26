@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal de Aplicações IA - IFSC</title>
+    <meta name="description" content="Portal de Aplicações e Agentes Especialistas com Inteligência Artificial do Instituto Federal de Santa Catarina (IFSC), Google for Education e Microsoft 365." />
+    <meta property="og:title" content="Portal de Aplicações IA - IFSC" />
+    <meta property="og:description" content="Acesso rápido às ferramentas e agentes de IA do IFSC, Google for Education e Microsoft 365 Copilot." />
+    
+    <!-- Favicon Oficial do Instituto Federal -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="/assets/brand/IFSC_vertical_fundo_transparente.png">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              ifsc: {
+                DEFAULT: '#32a041',   /* Verde Oficial IFSC Pantone 361 C */
+                dark: '#247a30',
+                light: '#eaf6ec',
+                red: '#c8191e',       /* Vermelho Oficial IFSC Pantone 1795 C */
+                redlight: '#fdf2f2'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Google Fonts Inter & Biblioteca Pública de Ícones (Bootstrap Icons) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+      :root {
+        --ifsc-green: #32a041;
+        --ifsc-red: #c8191e;
+      }
+      .filter-btn-group button.active {
+        background-color: var(--ifsc-green) !important;
+        color: white !important;
+        border-color: var(--ifsc-green) !important;
+        box-shadow: 0 4px 12px rgba(50, 160, 65, 0.28);
+      }
+      
+      .category-icon-box {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 800;
+        font-size: 9px;
+        line-height: 1;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        flex-shrink: 0;
+      }
+
+      .app-card {
+        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+      .app-card:hover {
+        transform: translateY(-3px);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #334155;
+      }
+    </style>
+
+    <!-- Theme Manager Script -->
+    <script>
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+      } else {
+          document.documentElement.classList.remove('dark');
+      }
+    </script>
+</head>
+<body class="bg-[#f8fafc] dark:bg-[#0b0f17] text-gray-800 dark:text-gray-100 antialiased flex flex-col min-h-screen selection:bg-green-100 selection:text-green-900 transition-colors duration-200">
+
+    <!-- Top Accent Line (Verde e Vermelho Institucionais IFSC) -->
+    <div class="h-1 bg-gradient-to-r from-[#c8191e] via-[#32a041] to-[#32a041] w-full shrink-0"></div>
+
+    <!-- ===== Cabeçalho Oficial do IFSC ===== -->
+    <header class="bg-white/95 dark:bg-[#121824]/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30 shadow-xs">
+      <div class="container mx-auto px-4 sm:px-6 py-2.5 max-w-7xl">
+        <div class="flex items-center justify-between gap-4">
+          
+          <!-- Logo Oficial do Manual da Marca IFSC + Identificação da Unidade -->
+          <div class="flex items-center gap-3.5">
+            <a href="https://www.ifsc.edu.br" target="_blank" rel="noopener noreferrer" title="Ir para o portal do IFSC" class="flex items-center hover:opacity-95 transition-opacity">
+              <!-- Versão Horizontal Colorida com Texto Preto (Modo Claro) -->
+              <img src="/assets/brand/IFSC_horizontal_fundo_transparente.png" 
+                   alt="Instituto Federal de Santa Catarina" 
+                   class="h-9 sm:h-11 w-auto object-contain block dark:hidden" />
+              
+              <!-- Versão Horizontal Colorida com Texto Branco (Modo Escuro) -->
+              <img src="/assets/brand/IFSC_horizontal_texto_branco_fundo_transparente.png" 
+                   alt="Instituto Federal de Santa Catarina" 
+                   class="h-9 sm:h-11 w-auto object-contain hidden dark:block" />
+            </a>
+
+            <!-- Divisor Vertical Institucional -->
+            <div class="h-8 w-px bg-gray-200 dark:bg-gray-700 hidden sm:block"></div>
+
+            <!-- Título do Portal e Unidade Gestora -->
+            <div class="hidden sm:flex flex-col justify-center">
+              <div class="flex items-center gap-2">
+                <span class="text-sm sm:text-base font-extrabold text-gray-900 dark:text-white tracking-tight leading-none">Portal de Aplicações IA</span>
+                <span class="bg-[#eaf6ec] dark:bg-emerald-950/70 text-[#247a30] dark:text-emerald-300 text-[10px] font-extrabold px-1.5 py-0.5 rounded uppercase border border-emerald-200/80 dark:border-emerald-800/60">DTIC-CGD</span>
+              </div>
+              <span class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5 font-medium">Inovações e Inteligência Artificial Institucional</span>
+            </div>
+          </div>
+
+          <!-- Busca Rápida Integrada no Cabeçalho Desktop -->
+          <div class="flex-1 max-w-md mx-2 hidden md:block">
+            <div class="relative">
+              <i class="bi bi-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+              <input type="text" id="quicksearch-desktop" placeholder="Buscar aplicação por nome, área ou descrição..." class="w-full pl-8 pr-7 py-1.5 bg-gray-100 dark:bg-gray-800/80 border border-transparent focus:border-[#32a041] focus:bg-white dark:focus:bg-[#161b22] rounded-xl text-xs focus:outline-none transition-all dark:text-gray-200">
+              <button id="clear-search-desktop" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hidden">
+                <i class="bi bi-x-circle-fill text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Ações Institucionais do Topo -->
+          <div class="flex items-center space-x-2">
+            <a href="https://apps.ifsc.edu.br" target="_blank" rel="noopener noreferrer" class="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-colors" title="Acessar o portal apps.ifsc.edu.br">
+              <i class="bi bi-box-arrow-up-right text-[10px] text-[#32a041]"></i>
+              <span>apps.ifsc.edu.br</span>
+            </a>
+
+            <a href="https://github.com/IFSC-DTIC" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-colors" title="Repositório GitHub do IFSC DTIC">
+              <i class="bi bi-github text-xs"></i>
+              <span>DTIC</span>
+            </a>
+
+            <!-- Alternador de Tema Escuro / Claro -->
+            <button id="theme-toggle" type="button" aria-label="Alternar tema" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm p-1.5 transition-colors">
+              <i id="theme-toggle-dark-icon" class="bi bi-moon-stars hidden text-base"></i>
+              <i id="theme-toggle-light-icon" class="bi bi-sun hidden text-base"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Barra de Busca Mobile -->
+        <div class="mt-2 block md:hidden">
+          <div class="relative">
+            <i class="bi bi-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <input type="text" id="quicksearch-mobile" placeholder="Buscar aplicação por nome ou área..." class="w-full pl-8 pr-7 py-1.5 bg-gray-100 dark:bg-gray-800/80 border border-transparent focus:border-[#32a041] rounded-xl text-xs focus:outline-none dark:text-gray-200">
+            <button id="clear-search-mobile" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hidden">
+              <i class="bi bi-x-circle-fill text-xs"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== Área Principal de Aplicações ===== -->
+    <main class="container mx-auto px-4 sm:px-6 py-4 flex-grow max-w-7xl">
+      
+      <!-- Barra de Controle: Navegação por 4 Abas Institucionais (100% Largura Horizontal) -->
+      <nav aria-label="Abas do Portal" class="w-full mb-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-gray-200/80 dark:bg-gray-800/80 border border-gray-300/80 dark:border-gray-700/80 shadow-inner w-full">
+          
+          <!-- Aba 1: Apps AI.Studio IFSC -->
+          <button id="tab-tools" type="button" role="tab" aria-selected="true" class="tab-btn w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 select-none border">
+            <img src="/favicon.svg" alt="IFSC" class="w-4 h-4 object-contain shrink-0" />
+            <span class="truncate">Apps AI.Studio IFSC</span>
+            <span id="tab-tools-count" class="text-[10px] px-2 py-0.5 rounded-full font-extrabold shrink-0">12</span>
+          </button>
+
+          <!-- Aba 2: Agentes Gems IFSC -->
+          <button id="tab-experts" type="button" role="tab" aria-selected="false" class="tab-btn w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 select-none border">
+            <img src="https://www.gstatic.com/images/branding/productlogos/gemini/v1/web-96dp/logo_gemini_color_1x_web_96dp.png" alt="Gemini" class="w-4 h-4 object-contain shrink-0" />
+            <span class="truncate">Agentes Gems IFSC</span>
+            <span id="tab-experts-count" class="text-[10px] px-2 py-0.5 rounded-full font-extrabold shrink-0">4</span>
+          </button>
+
+          <!-- Aba 3: Google for Education (IA Tools) -->
+          <button id="tab-google" type="button" role="tab" aria-selected="false" class="tab-btn w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 select-none border" title="Aplicações de Inteligência Artificial do Google for Education e Labs">
+            <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/google.png" alt="Google" class="w-4 h-4 object-contain shrink-0" />
+            <span class="truncate">Google for Education (IA Tools)</span>
+            <span id="tab-google-count" class="text-[10px] px-2 py-0.5 rounded-full font-extrabold shrink-0">15</span>
+          </button>
+
+          <!-- Aba 4: Microsoft 365 Education (A1) -->
+          <button id="tab-microsoft" type="button" role="tab" aria-selected="false" class="tab-btn w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 select-none border" title="Microsoft 365 Education Plano A1 - Office Web">
+            <img src="https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/microsoft-copilot.png" alt="Microsoft Copilot" class="w-4 h-4 object-contain shrink-0" />
+            <span class="truncate">Microsoft 365 Education (A1)</span>
+            <span id="tab-microsoft-count" class="text-[10px] px-2 py-0.5 rounded-full font-extrabold shrink-0">13</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Banner Institucional Resumido no Topo (Office 365 Educação & Autocadastro IFSC) -->
+      <div id="ms-alert-banner" class="hidden mb-4 p-3.5 sm:p-4 rounded-2xl bg-amber-50/90 dark:bg-[#1c1810] border border-amber-300 dark:border-amber-700/80 shadow-xs transition-all">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+          <div class="flex items-start sm:items-center gap-3">
+            <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-xs">
+              <i class="bi bi-key-fill text-base"></i>
+            </div>
+            <div class="text-xs">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="font-extrabold text-amber-950 dark:text-amber-100 text-xs sm:text-sm">
+                  Office 365 Educação &bull; Acesso IFSC
+                </span>
+                <span class="bg-amber-200/80 dark:bg-amber-900/80 text-amber-900 dark:text-amber-200 text-[10px] px-1.5 py-0.2 rounded font-extrabold uppercase">
+                  Licença A1 Gratuita
+                </span>
+              </div>
+              <div class="mt-1 text-[11px] sm:text-xs text-amber-950 dark:text-amber-100 space-y-1">
+                <p class="leading-relaxed">
+                  Disponível para <strong>toda a comunidade IFSC</strong> via autocadastro com e-mail institucional:
+                </p>
+                <ul class="list-disc pl-4 space-y-0.5 text-[11px] text-amber-900 dark:text-amber-200">
+                  <li><strong>Servidores (Técnicos Administrativos e Professores):</strong> Cadastre-se usando <code class="bg-amber-200/80 dark:bg-amber-900/80 px-1 py-0.2 rounded font-mono font-bold text-amber-950 dark:text-amber-100">@ifsc.edu.br</code>.</li>
+                  <li><strong>Alunos e Estudantes:</strong> Cadastre-se usando <code class="bg-amber-200/80 dark:bg-amber-900/80 px-1 py-0.2 rounded font-mono font-bold text-amber-950 dark:text-amber-100">@aluno.ifsc.edu.br</code>.</li>
+                </ul>
+                <p class="text-[11px] font-bold text-red-700 dark:text-red-300 flex items-center gap-1 mt-1">
+                  <i class="bi bi-exclamation-circle-fill text-xs shrink-0"></i>
+                  <span>A senha é criada no autocadastro da Microsoft e NÃO é a mesma do SIGAA/SIPAC.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2 shrink-0 self-end md:self-center">
+            <button type="button" onclick="window.openMsInfoModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold text-xs border border-gray-300 dark:border-gray-600 transition-colors shadow-2xs">
+              <i class="bi bi-info-circle text-amber-600 dark:text-amber-400"></i>
+              <span>Ver Detalhes da Licença</span>
+            </button>
+            <a href="https://ifsc.edu.br/en/web/guest/servicos-de-tecnologia#:~:text=emitida%20pelo%20IFSC-,Office%20365%20Educa%C3%A7%C3%A3o,-Utilizando%20a%20conta" 
+               target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#32a041] hover:bg-[#247a30] text-white font-bold text-xs shadow-xs transition-colors" title="Página oficial de serviços de tecnologia do IFSC">
+              <span>Portal IFSC</span>
+              <i class="bi bi-box-arrow-up-right text-[9px]"></i>
+            </a>
+            <a href="https://www.microsoft.com/pt-br/education/products/office" 
+               target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-xs transition-colors" title="Página oficial de autocadastro da Microsoft">
+              <span>Autocadastro</span>
+              <i class="bi bi-box-arrow-up-right text-[9px]"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros por Categoria -->
+      <div class="flex items-center flex-wrap gap-1.5 mb-5 filter-btn-group" id="filter-container">
+        <!-- Preenchido via JavaScript -->
+      </div>
+
+      <!-- Grade de Aplicativos -->
+      <div id="apps-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
+        <!-- Cards inseridos dinamicamente -->
+      </div>
+
+      <!-- Estado Quando Nada é Encontrado -->
+      <div id="no-results" class="hidden text-center py-14">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-400 mb-2">
+          <i class="bi bi-search text-xl"></i>
+        </div>
+        <p class="text-sm text-gray-800 dark:text-gray-200 font-bold">Nenhuma ferramenta encontrada</p>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Verifique a ortografia ou desmarque os filtros aplicados.</p>
+        <button id="clear-filters-btn" class="mt-3 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-[#32a041] hover:bg-[#247a30] transition-colors">
+          Limpar filtros
+        </button>
+      </div>
+    </main>
+
+    <!-- Modal de Informações Detalhadas -->
+    <div id="app-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200" aria-modal="true" role="dialog">
+      <div class="absolute inset-0 bg-gray-950/60 backdrop-blur-xs transition-opacity" id="modal-backdrop"></div>
+      <div id="app-modal-content" class="bg-white dark:bg-[#161b22] border border-gray-200 dark:border-gray-800 w-full max-w-lg rounded-2xl shadow-2xl relative z-10 scale-95 transition-transform duration-200 overflow-hidden">
+        <div class="p-5 sm:p-6 flex flex-col items-center text-center relative max-h-[90vh] overflow-y-auto">
+          <button id="close-modal-btn" aria-label="Fechar" class="absolute top-3.5 right-3.5 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
+            <i class="bi bi-x-lg text-sm"></i>
+          </button>
+          
+          <div id="modal-icon-container" class="mb-3"></div>
+          <div id="modal-badge-container" class="mb-1.5"></div>
+          <h2 id="modal-app-name" class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 leading-snug">Nome</h2>
+          <div id="modal-app-description" class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-3 font-normal leading-relaxed text-left bg-gray-50 dark:bg-gray-800/60 p-3.5 rounded-xl border border-gray-200/80 dark:border-gray-700/60 w-full"></div>
+          
+          <!-- Detalhes Institucionais Oficiais da Microsoft / IFSC no Modal -->
+          <div id="modal-ms-alert" class="hidden mb-4 p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800/70 text-left text-xs text-amber-900 dark:text-amber-200 w-full">
+            <div class="flex items-center gap-1.5 font-bold mb-2 text-amber-950 dark:text-amber-100 text-xs sm:text-sm">
+              <i class="bi bi-mortarboard-fill text-amber-600 dark:text-amber-400"></i>
+              <span>Office 365 Educação no IFSC (Licença A1 Gratuita)</span>
+            </div>
+            
+            <ul class="space-y-1.5 text-[11px] text-amber-900/90 dark:text-amber-200 list-disc pl-4 leading-relaxed">
+              <li><strong>Servidores (Técnicos e Professores):</strong> Têm direito ao Office 365 Educação realizando o autocadastro com seu e-mail institucional <code class="font-mono font-bold text-amber-950 dark:text-amber-100">@ifsc.edu.br</code>.</li>
+              <li><strong>Alunos e Estudantes:</strong> Têm direito ao mesmo pacote realizando o autocadastro com o e-mail institucional <code class="font-mono font-bold text-amber-950 dark:text-amber-100">@aluno.ifsc.edu.br</code>.</li>
+              <li><strong>Aplicações Inclusas:</strong> Versões online do Word, Excel, PowerPoint, OneNote, Microsoft Teams e OneDrive com 1 TB de armazenamento na nuvem (Office Web sem instalador desktop).</li>
+              <li><strong>Power Apps e Power BI:</strong> Ativados no primeiro acesso ao Microsoft Teams ou abrindo chamado para <a href="mailto:suporte.ti@ifsc.edu.br?subject=Solicita%C3%A7%C3%A3o%20de%20Licen%C3%A7a%20Microsoft%20A1%20IFSC" class="font-bold underline text-[#32a041] dark:text-emerald-400">suporte.ti@ifsc.edu.br</a>.</li>
+              <li><strong>Senha de Acesso:</strong> Definida por você no autocadastro da Microsoft. <span class="font-bold text-red-700 dark:text-red-300">NÃO é a mesma do SIGAA/SIPAC/Intranet</span>.</li>
+            </ul>
+
+            <div class="mt-3 pt-2.5 border-t border-amber-200/80 dark:border-amber-800/60 flex flex-wrap gap-2">
+              <a href="https://ifsc.edu.br/en/web/guest/servicos-de-tecnologia#:~:text=emitida%20pelo%20IFSC-,Office%20365%20Educa%C3%A7%C3%A3o,-Utilizando%20a%20conta" 
+                 target="_blank" rel="noopener noreferrer" 
+                 class="inline-flex items-center gap-1 text-[11px] font-bold text-[#32a041] dark:text-emerald-400 hover:underline">
+                <i class="bi bi-file-earmark-text text-xs"></i>
+                <span>Instruções no Portal IFSC ↗</span>
+              </a>
+              <span class="text-gray-300 dark:text-gray-600">&bull;</span>
+              <a href="https://www.microsoft.com/pt-br/education/products/office" 
+                 target="_blank" rel="noopener noreferrer" 
+                 class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-800 dark:text-amber-300 hover:underline">
+                <i class="bi bi-person-plus text-xs"></i>
+                <span>Autocadastro Education ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="flex gap-2 w-full mt-1">
+            <button id="modal-share-btn" class="px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-xs font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all flex items-center justify-center gap-1.5 shrink-0">
+              <i class="bi bi-link-45deg text-sm"></i>
+              <span id="share-btn-text">Copiar Link</span>
+            </button>
+            <a id="modal-open-app-btn" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 px-4 py-2 rounded-xl bg-[#32a041] hover:bg-[#247a30] text-white text-xs font-bold shadow-sm transition-all flex items-center justify-center gap-1.5">
+              <span>Abrir Ferramenta</span>
+              <i class="bi bi-box-arrow-up-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Rodapé Institucional Conforme Manual da Marca IFSC ===== -->
+    <footer class="bg-white border-t border-gray-200 dark:bg-[#121824] dark:border-gray-800 pt-8 pb-6 mt-auto">
+      <div class="container mx-auto px-4 sm:px-6 max-w-7xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-gray-100 dark:border-gray-800">
+          
+          <!-- Coluna 1: Marca Vertical Oficial do IFSC -->
+          <div class="flex items-start gap-4">
+            <a href="https://www.ifsc.edu.br" target="_blank" rel="noopener noreferrer" class="shrink-0 hover:opacity-95 transition-opacity">
+              <!-- Versão Vertical Colorida com Texto Preto (Modo Claro) -->
+              <img src="/assets/brand/IFSC_vertical_fundo_transparente.png" 
+                   alt="Instituto Federal de Santa Catarina" 
+                   class="h-20 w-auto object-contain block dark:hidden" />
+              
+              <!-- Versão Vertical Colorida com Texto Branco (Modo Escuro) -->
+              <img src="/assets/brand/IFSC_vertical_texto_branco_fundo_transparente.png" 
+                   alt="Instituto Federal de Santa Catarina" 
+                   class="h-20 w-auto object-contain hidden dark:block" />
+            </a>
+            <div class="text-xs text-gray-600 dark:text-gray-400">
+              <p class="font-extrabold text-gray-900 dark:text-white leading-tight">Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina</p>
+              <p class="mt-1 text-[11px] text-gray-500 dark:text-gray-400">Diretoria de Tecnologia da Informação e Comunicação &bull; DTIC</p>
+              <p class="text-[11px] text-gray-500 dark:text-gray-400">Coordenadoria de Governança de Dados &bull; CGD</p>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Links e Diretrizes Institucionais -->
+          <div class="text-xs text-gray-600 dark:text-gray-400 space-y-1.5">
+            <p class="font-bold text-gray-900 dark:text-white mb-2">Links Institucionais</p>
+            <div>
+              <a href="https://www.ifsc.edu.br" target="_blank" rel="noopener noreferrer" class="hover:text-[#32a041] transition-colors inline-flex items-center gap-1">
+                <i class="bi bi-chevron-right text-[10px]"></i>
+                <span>Portal Oficial do IFSC</span>
+              </a>
+            </div>
+            <div>
+              <a href="https://ifsc.edu.br/en/web/guest/servicos-de-tecnologia#:~:text=emitida%20pelo%20IFSC-,Office%20365%20Educa%C3%A7%C3%A3o,-Utilizando%20a%20conta" target="_blank" rel="noopener noreferrer" class="hover:text-[#32a041] transition-colors inline-flex items-center gap-1">
+                <i class="bi bi-mortarboard text-[10px]"></i>
+                <span>Serviços de Tecnologia: Office 365 Educação</span>
+              </a>
+            </div>
+            <div>
+              <a href="https://www.ifsc.edu.br/identidade-visual" target="_blank" rel="noopener noreferrer" class="hover:text-[#32a041] transition-colors inline-flex items-center gap-1">
+                <i class="bi bi-palette text-[10px]"></i>
+                <span>Manual de Identidade Visual IFSC</span>
+              </a>
+            </div>
+            <div>
+              <a href="https://apps.ifsc.edu.br" target="_blank" rel="noopener noreferrer" class="hover:text-[#32a041] transition-colors inline-flex items-center gap-1">
+                <i class="bi bi-grid text-[10px]"></i>
+                <span>Portal Central: apps.ifsc.edu.br</span>
+              </a>
+            </div>
+            <div>
+              <a href="https://github.com/IFSC-DTIC" target="_blank" rel="noopener noreferrer" class="hover:text-[#32a041] transition-colors inline-flex items-center gap-1">
+                <i class="bi bi-github text-[10px]"></i>
+                <span>Repositório Oficial DTIC no GitHub</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Coluna 3: Responsabilidade Ética e Legal em IA -->
+          <div class="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 p-3.5 rounded-xl border border-gray-200/70 dark:border-gray-700/60">
+            <div class="flex items-center gap-1.5 font-bold text-amber-700 dark:text-amber-400 mb-1">
+              <i class="bi bi-shield-exclamation text-sm"></i>
+              <span>Diretriz de IA Institucional</span>
+            </div>
+            <p class="text-[11px] leading-relaxed">
+              As ferramentas inteligentes do IFSC, Google e Microsoft visam apoiar atividades de ensino, pesquisa, extensão e gestão. Respostas geradas por modelos de IA devem ser sempre verificadas de maneira crítica antes de decisões formais.
+            </p>
+          </div>
+        </div>
+
+        <!-- Linha Final de Copyright -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 dark:text-gray-400 gap-2 text-center sm:text-left">
+          <span>&copy; <span id="year"></span> Instituto Federal de Santa Catarina. Todos os direitos reservados.</span>
+          <span class="flex items-center gap-2">
+            <span>Ministério da Educação &bull; Governo Federal</span>
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Script de Lógica e Renderização -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ===== Alternador de Tema Escuro / Claro =====
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        const updateThemeUI = () => {
+          if (document.documentElement.classList.contains('dark')) {
+            themeToggleLightIcon.classList.remove('hidden');
+            themeToggleDarkIcon.classList.add('hidden');
+          } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+            themeToggleLightIcon.classList.add('hidden');
+          }
+        };
+        updateThemeUI();
+
+        themeToggleBtn.addEventListener('click', () => {
+          if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          }
+          updateThemeUI();
+        });
+
+        // ===== Armazenamento Local de Favoritos =====
+        let favorites = [];
+        try {
+          favorites = JSON.parse(localStorage.getItem('ifsc_favorites') || '[]');
+        } catch (e) {
+          favorites = [];
+        }
+
+        const toggleFavorite = (id, event) => {
+          if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          const idx = favorites.indexOf(id);
+          if (idx > -1) {
+            favorites.splice(idx, 1);
+          } else {
+            favorites.push(id);
+          }
+          localStorage.setItem('ifsc_favorites', JSON.stringify(favorites));
+          renderView();
+        };
+        window.toggleFavorite = toggleFavorite;
+
+        // ===== Links Oficiais para Ícones do Google e Microsoft =====
+        const CDN_ICONS = 'https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png';
+
+        // Ícones Oficiais por Categoria IFSC
+        const getIfscIconMarkup = (iconKey) => {
+          switch(iconKey) {
+            case 'lgpd':
+              return `<div class="category-icon-box bg-gradient-to-br from-[#32a041] to-[#247a30]"><i class="bi bi-shield-lock-fill text-xl text-white"></i><span class="text-[8px] font-black mt-0.5 tracking-wider">LGPD</span></div>`;
+            case 'bpmn':
+              return `<div class="category-icon-box bg-gradient-to-br from-blue-600 to-indigo-700"><i class="bi bi-diagram-3-fill text-xl text-white"></i><span class="text-[8px] font-black mt-0.5 tracking-wider">PROC</span></div>`;
+            case 'siads':
+              return `<div class="category-icon-box bg-gradient-to-br from-amber-500 to-orange-600"><i class="bi bi-box-seam-fill text-xl text-white"></i><span class="text-[8px] font-black mt-0.5 tracking-wider">ADM</span></div>`;
+            case 'rsctae':
+              return `<div class="category-icon-box bg-gradient-to-br from-purple-600 to-indigo-800"><i class="bi bi-person-badge-fill text-xl text-white"></i><span class="text-[8px] font-black mt-0.5 tracking-wider">GP</span></div>`;
+            default:
+              return `<div class="category-icon-box bg-gradient-to-br from-[#32a041] to-[#247a30]"><i class="bi bi-app-indicator text-xl text-white"></i></div>`;
+          }
+        };
+
+        // ===== 1. Base de Dados: Ferramentas IFSC =====
+        const ifscToolsCategories = [
+          {
+            name: "LGPD",
+            slug: "lgpd",
+            apps: [
+              {
+                id: "guardiao",
+                name: "Guardião LGPD - IFSC",
+                url: "https://ai.studio/apps/drive/1M1hyJa3d3JFzhXOpZVoVRFsWJZLiUXwv?showAssistant=true&showPreview=true&fullscreenApplet=true",
+                badge: "Conformidade",
+                iconKey: "lgpd",
+                description: "Ferramenta de Anonimização de Dados para o Contexto do IFSC."
+              },
+              {
+                id: "chatbot",
+                name: "Chatbot LGPD",
+                url: "https://ai.studio/apps/drive/1Dgn-dkUoaGxiGLFwFXDBrEGPuu1kzUPR?showAssistant=true&showPreview=true&fullscreenApplet=true",
+                badge: "Relatórios",
+                iconKey: "lgpd",
+                description: "Assistente Conversacional para Conformidade e Geração de Relatórios no IFSC."
+              },
+              {
+                id: "ripd",
+                name: "IFSC: Form2RIPD",
+                url: "https://ai.studio/apps/drive/1fv20kTnlkPYefuOFIXP2bEo3ld8p8th7?showAssistant=true&showPreview=true&fullscreenApplet=true",
+                badge: "Gerador RIPD",
+                iconKey: "lgpd",
+                description: "Gerador de Relatórios de Impacto à Proteção de Dados (RIPD) para LGPD no IFSC."
+              },
+              {
+                id: "mapeamento",
+                name: "Mapeamento de Dados",
+                url: "https://ai.studio/apps/drive/1EvvVk2lZ0-4HHPokSV-ZBQHkwbHELDxA?showAssistant=true&showPreview=true&fullscreenApplet=true",
+                badge: "Mapeamento",
+                iconKey: "lgpd",
+                description: "Automação do Mapeamento de Dados e inventário institucional do IFSC."
+              }
+            ]
+          },
+          {
+            name: "Processos",
+            slug: "processos",
+            apps: [
+              {
+                id: "sezio",
+                name: "sez.iO - Agente IA",
+                url: "https://ai.studio/apps/drive/1z-e1wW2LvCStdG9ElsIeNt3x4-Q5tqOZ?showAssistant=true&showPreview=true&fullscreenApplet=true",
+                badge: "Modelagem",
+                iconKey: "bpmn",
+                description: "Assistente de Modelagem de Processos e Relatórios LGPD."
+              },
+              {
+                id: "lardic",
+                name: "LaRDiC - Roteirização",
+                url: "https://ai.studio/apps/drive/1UDGQ0KWeFrb47zM5koH2NJooFXos7Q46?showAssistant=true&showPreview=true&fullscreenApplet=true",
+                badge: "CProc DocX",
+                iconKey: "bpmn",
+                description: "Sistema CProc: Conversão BPMN/DMN para ProcessoIFSC em formato DocX."
+              },
+              {
+                id: "pedemeia",
+                name: "Pé-de-Meia",
+                url: "https://ai.studio/apps/c3f584f3-25d8-48b5-b8af-dd0ac9e001d9?fullscreenApplet=true",
+                badge: "SGP IFSC",
+                iconKey: "bpmn",
+                description: "Assistente de formatação SGP - Programa Pé-de-Meia."
+              },
+              {
+                id: "pedemeia-api",
+                name: "ApPé-de-MeIA-API",
+                url: "https://ai.studio/apps/73333497-5550-41ad-a464-f63f8e87b0f7?fullscreenApplet=true",
+                badge: "API REST",
+                iconKey: "bpmn",
+                description: "API de integração do assistente de formatação SGP - Pé-de-Meia."
+              },
+              {
+                id: "processo",
+                name: "Texto ➔ Especificação",
+                url: "https://ai.studio/apps/drive/1GvqPgG2sjuoaw2XM89jj7Hfk3z4V9GO9?showAssistant=true&showPreview=true&fullscreenApplet=true",
+                badge: "BPMN Automágico",
+                iconKey: "bpmn",
+                description: "Texto -> Processo -> Especificação de Sistema automatizada com IA."
+              }
+            ]
+          },
+          {
+            name: "Administrativo",
+            slug: "administrativo",
+            apps: [
+              {
+                id: "padronizacao",
+                name: "Padronização Inventário",
+                url: "https://ai.studio/apps/drive/12kTlPi2J1wxLKOskn_xAeb-CwJsBMv09?showAssistant=true&showPreview=true&fullscreenApplet=true",
+                badge: "Inventário",
+                iconKey: "siads",
+                description: "SIADS - Unifique e higienize dados de inventário de múltiplos campi do IFSC."
+              },
+              {
+                id: "siads",
+                name: "SIADS - Agregador IA",
+                url: "https://ai.studio/apps/drive/1yZm3Z3PbrXS0316yJVm12ScHfSqxFFJ0?showAssistant=true&showPreview=true&fullscreenApplet=true",
+                badge: "SIADS",
+                iconKey: "siads",
+                description: "Agregador e consolidador de inventário de bens com suporte de IA."
+              }
+            ]
+          },
+          {
+            name: "Gestão de Pessoas",
+            slug: "gestao-de-pessoas",
+            apps: [
+              {
+                id: "rsctae",
+                name: "RSC-TAE Assistente",
+                url: "https://ai.studio/apps/da771d45-41e2-413d-b159-67aed31b50c4?fullscreenApplet=true",
+                badge: "RSC-TAE",
+                iconKey: "rsctae",
+                description: "Assistente de extração e organização preliminar de dados para RSC-TAE."
+              }
+            ]
+          }
+        ];
+
+        // ===== 2. Base de Dados: Especialistas Gems =====
+        const ifscGemsCategories = [
+          {
+            name: "Servidores",
+            slug: "servidores",
+            apps: [
+              {
+                id: "agent-sibi",
+                name: "Especialista SiBI",
+                url: "https://gemini.google.com/gem/98588692d34c",
+                badge: "Bibliotecas",
+                iconUrl: `${CDN_ICONS}/google-gemini.png`,
+                description: "Assistente dos profissionais do SiBI. Normalização ABNT, consultas ao SophiA e políticas de acervo do IFSC."
+              },
+              {
+                id: "agent-srp",
+                name: "Silv.IA - Licitações",
+                url: "https://gemini.google.com/gem/10GI7VXwtapdgUxFfCp-14-kKJULn7Ord?usp=sharing",
+                badge: "Compras & SIPAC",
+                iconUrl: `${CDN_ICONS}/google-gemini.png`,
+                description: "Automação de ARPs pelo SIPAC e consultoria técnica de compras públicas baseada na Lei 14.133/2021."
+              },
+              {
+                id: "agent-dgp",
+                name: "DGP (Tira Dúvidas)",
+                url: "https://gemini.google.com/gem/1qDLyL7Tm_wuF-1zhFVK7ZZV7xcI4p41I?usp=sharing",
+                badge: "Gestão Pessoas",
+                iconUrl: `${CDN_ICONS}/google-gemini.png`,
+                description: "Interpretação da Resolução Consup 11/2019, FAQs sobre progressão funcional e licença capacitação."
+              },
+              {
+                id: "agent-cgd",
+                name: "CGD - Governança TI",
+                url: "https://gemini.google.com/gem/1QNvQjzJVhZF8B71gJBdX_0G3_HrU4Fyb?usp=sharing",
+                badge: "Governança TI",
+                iconUrl: `${CDN_ICONS}/google-gemini.png`,
+                description: "Respostas baseadas estritamente nas normativas oficiais de TI do IFSC com base de RAG do NotebookLM."
+              }
+            ]
+          }
+        ];
+
+        // ===== 3. Base de Dados: Google for Education & Labs (IA Tools) =====
+        const googleEduCategories = [
+          {
+            name: "Assistentes & Criação IA",
+            slug: "assistentes-criacao",
+            apps: [
+              {
+                id: "g-gemini",
+                name: "Google Gemini",
+                url: "https://gemini.google.com/",
+                badge: "IA Geral Multimodal",
+                iconUrl: "https://www.gstatic.com/images/branding/productlogos/gemini/v1/web-96dp/logo_gemini_color_1x_web_96dp.png",
+                description: "Assistente multimodal inteligente para análise de documentos, elaboração pedagógica e tutoria personalizada."
+              },
+              {
+                id: "g-notebooklm",
+                name: "NotebookLM",
+                url: "https://notebooklm.google.com/",
+                badge: "Caderno & RAG",
+                iconUrl: "https://www.gstatic.com/images/branding/productlogos/notebooklm/v1/web-96dp/logo_notebooklm_color_1x_web_96dp.png",
+                description: "Caderno inteligente baseado em IA que sintetiza fontes, PDFs e documentos em notas e podcasts didáticos."
+              },
+              {
+                id: "g-ai-studio",
+                name: "Google AI Studio",
+                url: "https://aistudio.google.com/",
+                badge: "Vibe Coding & IA",
+                iconUrl: "https://www.gstatic.com/images/branding/productlogos/ai_studio/v1/web-96dp/logo_ai_studio_color_1x_web_96dp.png",
+                description: "Plataforma de prototipagem rápida e desenvolvimento com modelos Gemini 3 e deploy no Cloud Run."
+              },
+              {
+                id: "g-stitch",
+                name: "Google Stitch (Google Labs)",
+                url: "https://stitch.withgoogle.com/",
+                badge: "Vibe Design & UI",
+                iconUrl: "https://www.gstatic.com/labs-code/stitch/favicon-192x192.png",
+                description: "Tela de Vibe Design que transforma comandos em linguagem natural em interfaces web/mobile prontas."
+              },
+              {
+                id: "g-flowmusic",
+                name: "Flow Music (MusicFX)",
+                url: "https://www.flowmusic.app/",
+                badge: "Música & Áudio IA",
+                iconUrl: `${CDN_ICONS}/google-gemini.png`,
+                description: "Criação e exploração musical generativa com IA do Google Labs e DeepMind a partir de prompts em linguagem natural."
+              },
+              {
+                id: "g-vids",
+                name: "Google Vids",
+                url: "https://workspace.google.com/products/vids/",
+                badge: "Vídeos com IA",
+                iconUrl: "https://www.gstatic.com/images/branding/productlogos/vids/v1/web-96dp/logo_vids_color_1x_web_96dp.png",
+                description: "Criação colaborativa de videoaulas, roteiros didáticos e apresentações animadas assistidas por IA."
+              }
+            ]
+          },
+          {
+            name: "Engenharia, Agentes & Código",
+            slug: "engenharia-codigo",
+            apps: [
+              {
+                id: "g-antigravity-2",
+                name: "Antigravity 2.0",
+                url: "https://antigravity.google/download#antigravity-2",
+                badge: "Hub & Orquestração",
+                iconUrl: "https://antigravity.google/apple-touch-icon.png",
+                description: "Central de comando para gerenciar projetos, automações e orquestrar múltiplos agentes de IA locais em paralelo."
+              },
+              {
+                id: "g-antigravity-ide",
+                name: "Antigravity IDE (Standalone)",
+                url: "https://antigravity.google/download#antigravity-ide",
+                badge: "IDE Autônoma",
+                iconUrl: "https://antigravity.google/assets/image/antigravity-logo.png",
+                description: "Ambiente de desenvolvimento integrado (IDE) autônomo com motor nativo de agentes, autocompletamento e artefatos."
+              },
+              {
+                id: "g-antigravity-cli",
+                name: "Google Antigravity CLI",
+                url: "https://antigravity.google/product/antigravity-cli",
+                badge: "Terminal & Agentes",
+                iconUrl: "https://antigravity.google/apple-touch-icon.png",
+                description: "Interface de linha de comando (TUI) leve e veloz para invocar, monitorar e interagir com agentes no terminal."
+              },
+              {
+                id: "g-jules",
+                name: "Jules (Google Labs)",
+                url: "https://jules.google.com/",
+                badge: "Agente de Código",
+                iconUrl: "https://www.gstatic.com/labs-code/code-app/favicon-48x48.png",
+                description: "Agente autônomo integrado ao GitHub que clona repositórios e programa backend, testes unitários e correções."
+              },
+              {
+                id: "g-colab",
+                name: "Google Colab",
+                url: "https://colab.research.google.com/",
+                badge: "Python & IA",
+                iconUrl: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/google-colab.png",
+                description: "Ambiente Jupyter interativo na nuvem com assistência de código IA e aceleração por GPU/TPU."
+              }
+            ]
+          },
+          {
+            name: "Google Labs & Micro-Aplicações",
+            slug: "google-labs",
+            apps: [
+              {
+                id: "g-labs-hub",
+                name: "Google Labs (Hub Experimental)",
+                url: "https://labs.google/",
+                badge: "Hub Experimental",
+                iconUrl: `${CDN_ICONS}/google.png`,
+                description: "Hub de experimentos de IA (ImageFX, VideoFX, MusicFX, Pomelli, Opal). Nota: Nem todas as ferramentas estão disponíveis na licença IFSC ou podem exigir lista de espera."
+              },
+              {
+                id: "g-opal",
+                name: "Google Opal (Google Labs)",
+                url: "https://opal.google",
+                badge: "No-Code & Mini-Apps",
+                iconUrl: "https://opal.google/images/favicon.png",
+                description: "Criação de miniaplicativos de IA descrevendo fluxos em linguagem natural com link compartilhável sem código."
+              },
+              {
+                id: "g-pomelli",
+                name: "Google Pomelli (Google Labs)",
+                url: "https://labs.google/pomelli",
+                badge: "Marketing & Branding",
+                iconUrl: "https://www.gstatic.com/_/bettany/MjAyNjA5MjMuMDJfcDA/foundry_about%2Fassets/favicon-48x48.png",
+                description: "Assistente de marketing que analisa a identidade visual e tom de voz de um site para gerar postagens e criativos."
+              },
+              {
+                id: "g-workspace-studio",
+                name: "Google Workspace Studio",
+                url: "https://studio.workspace.google.com/",
+                badge: "Workspace & IA",
+                iconUrl: "https://www.gstatic.com/images/branding/productlogos/workspace_studio/v1/web-96dp/logo_workspace_studio_color_1x_web_96dp.png",
+                description: "Plataforma de criação, automação e desenvolvimento de soluções inteligentes e fluxos no Workspace."
+              }
+            ]
+          }
+        ];
+
+        // ===== 4. Base de Dados: Microsoft 365 Education (A1 - Office Web) =====
+        const microsoftCategories = [
+          {
+            name: "Assistentes & Chat",
+            slug: "assistentes-chat",
+            apps: [
+              {
+                id: "ms-copilot",
+                name: "Microsoft Copilot",
+                url: "https://copilot.microsoft.com/",
+                badge: "IA Geral & Web",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-copilot.png`,
+                description: "Assistente inteligente da Microsoft para pesquisa web, geração de textos e resolução de problemas acadêmicos."
+              },
+              {
+                id: "ms-bing",
+                name: "Copilot no Bing",
+                url: "https://www.bing.com/chat",
+                badge: "Busca & DALL-E",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-bing.png`,
+                description: "Mecanismo de busca fundamentado com IA generativa, síntese de páginas da web e geração de imagens."
+              },
+              {
+                id: "ms-github-copilot",
+                name: "GitHub Copilot",
+                url: "https://github.com/features/copilot",
+                badge: "Código & Programação",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/github-copilot.png`,
+                description: "Parceiro de programação por IA para professores, técnicos de TI e estudantes de cursos de computação do IFSC."
+              },
+              {
+                id: "ms-edge",
+                name: "Microsoft Edge (com Copilot)",
+                url: "https://www.microsoft.com/edge",
+                badge: "Navegador com IA",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-edge.png`,
+                description: "Navegador com barra lateral inteligente para resumir artigos, comparar documentos e redigir e-mails."
+              }
+            ]
+          },
+          {
+            name: "Produtividade & Office Web",
+            slug: "produtividade-escrita",
+            apps: [
+              {
+                id: "ms-office-web",
+                name: "Office Web (Portal Central)",
+                url: "https://www.office.com/",
+                badge: "Office Web (sem Desktop)",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-office.png`,
+                description: "Portal central do Office Web online com Word, Excel, PowerPoint e OneNote (sem instalador desktop)."
+              },
+              {
+                id: "ms-word",
+                name: "Microsoft Word (Office Web)",
+                url: "https://word.office.com/",
+                badge: "Word Web (sem Desktop)",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-word.png`,
+                description: "Criação, reescrita e resumo de artigos científicos, relatórios e projetos no navegador com IA."
+              },
+              {
+                id: "ms-excel",
+                name: "Microsoft Excel (Office Web)",
+                url: "https://excel.office.com/",
+                badge: "Excel Web (sem Desktop)",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-excel.png`,
+                description: "Exploração de planilhas de dados, fórmulas automatizadas, gráficos preditivos e análises estatísticas."
+              },
+              {
+                id: "ms-powerpoint",
+                name: "Microsoft PowerPoint (Office Web)",
+                url: "https://powerpoint.office.com/",
+                badge: "PowerPoint Web (sem Desktop)",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-powerpoint.png`,
+                description: "Geração de apresentações e slides conceituais rápidos diretamente no navegador."
+              },
+              {
+                id: "ms-onenote",
+                name: "Microsoft OneNote (Office Web)",
+                url: "https://www.onenote.com/",
+                badge: "OneNote Web (sem Desktop)",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-onenote.png`,
+                description: "Caderno digital para anotações de aulas e reuniões com planos de estudo organizados."
+              }
+            ]
+          },
+          {
+            name: "Colaboração & Nuvem",
+            slug: "colaboracao-nuvem",
+            apps: [
+              {
+                id: "ms-teams",
+                name: "Microsoft Teams",
+                url: "https://teams.microsoft.com/",
+                badge: "Reuniões & Aulas",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-teams.png`,
+                description: "Videoconferências e chats com transcrição ao vivo, geração de atas automáticas e ativação da licença A1."
+              },
+              {
+                id: "ms-onedrive",
+                name: "Microsoft OneDrive (1 TB)",
+                url: "https://onedrive.live.com/",
+                badge: "Nuvem 1 TB",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-onedrive.png`,
+                description: "1 TB de armazenamento online gratuito institucional com pesquisa inteligente em PDFs, imagens e arquivos."
+              },
+              {
+                id: "ms-powerbi",
+                name: "Power BI (com IA)",
+                url: "https://app.powerbi.com/",
+                badge: "Incluso no A1",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/powerbi.png`,
+                description: "Dashboards analíticos inteligentes e relatórios com IA inclusos no licenciamento A1 do IFSC."
+              },
+              {
+                id: "ms-powerautomate",
+                name: "Power Automate (Copilot)",
+                url: "https://make.powerautomate.com/",
+                badge: "Automação de Fluxos",
+                platform: "microsoft",
+                iconUrl: `${CDN_ICONS}/microsoft-power-automate.png`,
+                description: "Criação de fluxos de trabalho e automações de processos em linguagem natural assistida por IA."
+              }
+            ]
+          }
+        ];
+
+        // Achatar coleções
+        const flatten = (categories) => {
+          const res = [];
+          categories.forEach(cat => {
+            cat.apps.forEach(app => {
+              res.push({
+                ...app,
+                categoryName: cat.name,
+                categorySlug: cat.slug
+              });
+            });
+          });
+          return res;
+        };
+
+        const allTools = flatten(ifscToolsCategories);
+        const allGems = flatten(ifscGemsCategories);
+        const allGoogle = flatten(googleEduCategories);
+        const allMicrosoft = flatten(microsoftCategories);
+
+        // Mapeamento para busca rápida em modal
+        const appMap = {};
+        [...allTools, ...allGems, ...allGoogle, ...allMicrosoft].forEach(a => { appMap[a.id] = a; });
+
+        // Contadores das Abas
+        document.getElementById('tab-tools-count').textContent = allTools.length;
+        document.getElementById('tab-experts-count').textContent = allGems.length;
+        document.getElementById('tab-google-count').textContent = allGoogle.length;
+        document.getElementById('tab-microsoft-count').textContent = allMicrosoft.length;
+
+        // Estado do Portal
+        let currentTab = 'tools'; // 'tools' | 'experts' | 'google' | 'microsoft'
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // Elementos DOM
+        const tabToolsBtn = document.getElementById('tab-tools');
+        const tabExpertsBtn = document.getElementById('tab-experts');
+        const tabGoogleBtn = document.getElementById('tab-google');
+        const tabMicrosoftBtn = document.getElementById('tab-microsoft');
+        const msAlertBanner = document.getElementById('ms-alert-banner');
+
+        const filterContainer = document.getElementById('filter-container');
+        const appsGrid = document.getElementById('apps-grid');
+        const noResults = document.getElementById('no-results');
+        const clearFiltersBtn = document.getElementById('clear-filters-btn');
+        const activeCategoryIndicator = document.getElementById('active-category-indicator');
+
+        const searchDesktop = document.getElementById('quicksearch-desktop');
+        const clearSearchDesktop = document.getElementById('clear-search-desktop');
+        const searchMobile = document.getElementById('quicksearch-mobile');
+        const clearSearchMobile = document.getElementById('clear-search-mobile');
+
+        // Gerador de Cards Institucionais (1 Clique Direto para Abrir)
+        const createCardHTML = (app) => {
+          const isFav = favorites.includes(app.id);
+
+          const iconMarkup = app.iconUrl
+            ? `<div class="w-11 h-11 rounded-xl flex items-center justify-center p-1.5 bg-white dark:bg-gray-800/90 border border-gray-200/90 dark:border-gray-700 shadow-2xs shrink-0 group-hover:scale-105 transition-transform"><img src="${app.iconUrl}" alt="${app.name}" class="w-8 h-8 object-contain" loading="lazy" onerror="this.onerror=null; this.src='${app.platform === 'microsoft' ? CDN_ICONS + '/microsoft.png' : 'https://www.gstatic.com/images/branding/googleg_gradient/1x/googleg_gradient_standard_20dp.png'}';" /></div>`
+            : getIfscIconMarkup(app.iconKey);
+
+          return `
+            <div class="app-card relative flex flex-col justify-between p-4 bg-white dark:bg-[#121824] border border-gray-200/90 dark:border-gray-800 rounded-2xl shadow-xs hover:shadow-md hover:border-[#32a041] dark:hover:border-[#32a041] group">
+              
+              <!-- Linha Superior: Ícone Oficial + Badges + Ações -->
+              <div>
+                <div class="flex items-start justify-between gap-2 mb-2.5">
+                  ${iconMarkup}
+
+                  <div class="flex items-center gap-1">
+                    <!-- Botão de Favorito -->
+                    <button type="button" aria-label="Favoritar" onclick="window.toggleFavorite('${app.id}', event)"
+                            class="p-1.5 rounded-lg text-gray-400 hover:text-amber-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${isFav ? '!text-amber-500' : ''}">
+                      <i class="bi ${isFav ? 'bi-star-fill' : 'bi-star'} text-sm"></i>
+                    </button>
+
+                    <!-- Botão de Informações Detalhadas -->
+                    <button type="button" aria-label="Mais Informações" onclick="window.openAppModal('${app.id}', event)"
+                            class="p-1.5 rounded-lg text-gray-400 hover:text-blue-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" title="Ver detalhes da aplicação">
+                      <i class="bi bi-info-circle text-sm"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Badges da Categoria -->
+                <div class="mb-1 flex items-center gap-1.5 flex-wrap">
+                  <span class="inline-block text-[10px] font-bold uppercase tracking-wider text-[#247a30] dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200/70 dark:border-emerald-800/60 truncate max-w-full">
+                    ${app.badge || app.categoryName}
+                  </span>
+                </div>
+
+                <!-- Título com Acesso Rápido -->
+                <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="block group-hover:text-[#32a041] transition-colors focus:outline-none">
+                  <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-1">
+                    ${app.name}
+                  </h3>
+                </a>
+
+                <!-- Descrição Curta -->
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 leading-relaxed font-normal">
+                  ${app.description}
+                </p>
+              </div>
+
+              <!-- Rodapé do Card com Acesso Direto Oficial -->
+              <div class="mt-3 pt-2.5 border-t border-gray-100 dark:border-gray-800/80 flex items-center justify-between">
+                <a href="${app.url}" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 text-xs font-bold text-[#32a041] dark:text-emerald-400 hover:underline">
+                  <span>Acessar</span>
+                  <i class="bi bi-box-arrow-up-right text-[10px]"></i>
+                </a>
+
+                <button type="button" onclick="window.copyAppLink('${app.url}', event)" class="text-[11px] text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 flex items-center gap-1" title="Copiar link direto">
+                  <i class="bi bi-link-45deg text-sm"></i>
+                  <span>Copiar</span>
+                </button>
+              </div>
+            </div>
+          `;
+        };
+
+        // Renderizar Filtros
+        const renderFilterButtons = () => {
+          let categories = [];
+          let currentList = [];
+
+          if (currentTab === 'tools') {
+            categories = ifscToolsCategories;
+            currentList = allTools;
+          } else if (currentTab === 'experts') {
+            categories = ifscGemsCategories;
+            currentList = allGems;
+          } else if (currentTab === 'google') {
+            categories = googleEduCategories;
+            currentList = allGoogle;
+          } else {
+            categories = microsoftCategories;
+            currentList = allMicrosoft;
+          }
+
+          const activeBtnClasses = 'bg-[#32a041] text-white border-[#32a041] shadow-xs font-bold ring-1 ring-[#32a041]';
+          const inactiveBtnClasses = 'bg-white dark:bg-[#121824] text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 font-semibold shadow-2xs';
+
+          let html = `
+            <button data-filter="all" class="text-xs py-1.5 px-3 rounded-xl border transition-all cursor-pointer ${currentFilter === 'all' ? activeBtnClasses : inactiveBtnClasses}">
+              Todos (${currentList.length})
+            </button>
+            <button data-filter="favs" class="text-xs py-1.5 px-3 rounded-xl border transition-all cursor-pointer flex items-center gap-1.5 ${currentFilter === 'favs' ? activeBtnClasses : inactiveBtnClasses}">
+              <i class="bi bi-star-fill text-[10px] ${currentFilter === 'favs' ? 'text-amber-200' : 'text-amber-500'}"></i>
+              <span>Favoritos</span>
+            </button>
+          `;
+
+          categories.forEach(cat => {
+            const isCatActive = currentFilter === cat.slug;
+            html += `
+              <button data-filter="${cat.slug}" class="text-xs py-1.5 px-3 rounded-xl border transition-all cursor-pointer ${isCatActive ? activeBtnClasses : inactiveBtnClasses}">
+                ${cat.name} <span class="opacity-75 text-[10px]">(${cat.apps.length})</span>
+              </button>
+            `;
+          });
+
+          filterContainer.innerHTML = html;
+        };
+
+        // Renderizar Conteúdo Filtrado
+        const renderView = () => {
+          let list = [];
+          if (currentTab === 'tools') list = allTools;
+          else if (currentTab === 'experts') list = allGems;
+          else if (currentTab === 'google') list = allGoogle;
+          else list = allMicrosoft;
+
+          // Exibir banner de aviso se estiver na aba Microsoft
+          if (currentTab === 'microsoft') {
+            msAlertBanner.classList.remove('hidden');
+          } else {
+            msAlertBanner.classList.add('hidden');
+          }
+
+          const q = searchQuery.toLowerCase().trim();
+
+          const filtered = list.filter(app => {
+            const matchesCategory = currentFilter === 'all' ||
+              (currentFilter === 'favs' && favorites.includes(app.id)) ||
+              app.categorySlug === currentFilter;
+
+            const matchesSearch = !q ||
+              app.name.toLowerCase().includes(q) ||
+              app.description.toLowerCase().includes(q) ||
+              (app.badge && app.badge.toLowerCase().includes(q));
+
+            return matchesCategory && matchesSearch;
+          });
+
+          // Atualizar texto do indicador se existir
+          if (activeCategoryIndicator) {
+            if (currentFilter === 'all') {
+              activeCategoryIndicator.textContent = `Mostrando todas as ${filtered.length} ferramentas`;
+            } else if (currentFilter === 'favs') {
+              activeCategoryIndicator.textContent = `Mostrando ${filtered.length} ferramentas`;
+            } else {
+              activeCategoryIndicator.textContent = `Filtro ativo: ${currentFilter} (${filtered.length})`;
+            }
+          }
+
+          if (filtered.length === 0) {
+            appsGrid.innerHTML = '';
+            noResults.classList.remove('hidden');
+          } else {
+            noResults.classList.add('hidden');
+            appsGrid.innerHTML = filtered.map(createCardHTML).join('');
+          }
+        };
+
+        // Troca de Aba com Estilo de Abas Conectadas e Modernas (Tab Navigation)
+        const switchTab = (tab) => {
+          currentTab = tab;
+          currentFilter = 'all';
+
+          const tabsConfig = [
+            { 
+              id: 'tab-tools', 
+              key: 'tools', 
+              activeClass: 'bg-white dark:bg-gray-900 text-[#247a30] dark:text-emerald-400 border-gray-200 dark:border-gray-700 shadow-sm border-b-2 border-b-[#32a041] dark:border-b-emerald-400 font-extrabold', 
+              countActiveClass: 'bg-emerald-100 dark:bg-emerald-950/80 text-[#247a30] dark:text-emerald-300' 
+            },
+            { 
+              id: 'tab-experts', 
+              key: 'experts', 
+              activeClass: 'bg-white dark:bg-gray-900 text-purple-700 dark:text-purple-300 border-gray-200 dark:border-gray-700 shadow-sm border-b-2 border-b-purple-600 dark:border-b-purple-400 font-extrabold', 
+              countActiveClass: 'bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300' 
+            },
+            { 
+              id: 'tab-google', 
+              key: 'google', 
+              activeClass: 'bg-white dark:bg-gray-900 text-blue-700 dark:text-blue-300 border-gray-200 dark:border-gray-700 shadow-sm border-b-2 border-b-blue-600 dark:border-b-blue-400 font-extrabold', 
+              countActiveClass: 'bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300' 
+            },
+            { 
+              id: 'tab-microsoft', 
+              key: 'microsoft', 
+              activeClass: 'bg-white dark:bg-gray-900 text-sky-700 dark:text-sky-300 border-gray-200 dark:border-gray-700 shadow-sm border-b-2 border-b-sky-600 dark:border-b-sky-400 font-extrabold', 
+              countActiveClass: 'bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300' 
+            },
+          ];
+
+          const inactiveClasses = ['bg-transparent', 'text-gray-600', 'dark:text-gray-400', 'hover:text-gray-900', 'dark:hover:text-gray-100', 'hover:bg-white/50', 'dark:hover:bg-gray-700/40', 'border-transparent', 'font-medium'];
+          const inactiveCountClasses = ['bg-gray-300/80', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300'];
+
+          tabsConfig.forEach(cfg => {
+            const btn = document.getElementById(cfg.id);
+            const countSpan = document.getElementById(`${cfg.id}-count`);
+            const activeClassList = cfg.activeClass.split(' ');
+            const countActiveClassList = cfg.countActiveClass.split(' ');
+
+            if (cfg.key === tab) {
+              btn.setAttribute('aria-selected', 'true');
+              btn.classList.remove(...inactiveClasses);
+              btn.classList.add(...activeClassList);
+              if (countSpan) {
+                countSpan.classList.remove(...inactiveCountClasses);
+                countSpan.classList.add(...countActiveClassList);
+              }
+            } else {
+              btn.setAttribute('aria-selected', 'false');
+              btn.classList.remove(...activeClassList);
+              btn.classList.add(...inactiveClasses);
+              if (countSpan) {
+                countSpan.classList.remove(...countActiveClassList);
+                countSpan.classList.add(...inactiveCountClasses);
+              }
+            }
+          });
+
+          renderFilterButtons();
+          renderView();
+        };
+
+        tabToolsBtn.addEventListener('click', () => switchTab('tools'));
+        tabExpertsBtn.addEventListener('click', () => switchTab('experts'));
+        tabGoogleBtn.addEventListener('click', () => switchTab('google'));
+        tabMicrosoftBtn.addEventListener('click', () => switchTab('microsoft'));
+
+        // Eventos dos Botões de Filtro
+        filterContainer.addEventListener('click', (e) => {
+          const btn = e.target.closest('button');
+          if (!btn) return;
+          currentFilter = btn.dataset.filter;
+          renderFilterButtons();
+          renderView();
+        });
+
+        // Manipulação da Busca
+        const handleSearch = (value) => {
+          searchQuery = value;
+          searchDesktop.value = value;
+          searchMobile.value = value;
+
+          if (value) {
+            clearSearchDesktop.classList.remove('hidden');
+            clearSearchMobile.classList.remove('hidden');
+          } else {
+            clearSearchDesktop.classList.add('hidden');
+            clearSearchMobile.classList.add('hidden');
+          }
+
+          renderView();
+        };
+
+        searchDesktop.addEventListener('input', (e) => handleSearch(e.target.value));
+        searchMobile.addEventListener('input', (e) => handleSearch(e.target.value));
+
+        clearSearchDesktop.addEventListener('click', () => {
+          handleSearch('');
+          searchDesktop.focus();
+        });
+        clearSearchMobile.addEventListener('click', () => {
+          handleSearch('');
+          searchMobile.focus();
+        });
+
+        clearFiltersBtn.addEventListener('click', () => {
+          handleSearch('');
+          currentFilter = 'all';
+          renderFilterButtons();
+          renderView();
+        });
+
+        // Copiar Link
+        window.copyAppLink = (url, event) => {
+          if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          navigator.clipboard.writeText(url).then(() => {
+            const btn = event?.currentTarget;
+            if (btn) {
+              const original = btn.innerHTML;
+              btn.innerHTML = `<i class="bi bi-check text-green-500"></i><span class="text-green-500">Copiado!</span>`;
+              setTimeout(() => { btn.innerHTML = original; }, 1500);
+            }
+          });
+        };
+
+        // Modal de Informações Dedicado para Office 365 Educação no IFSC
+        window.openMsInfoModal = () => {
+          const modal = document.getElementById('app-modal');
+          const modalContent = document.getElementById('app-modal-content');
+          const iconContainer = document.getElementById('modal-icon-container');
+          const badgeContainer = document.getElementById('modal-badge-container');
+          const nameEl = document.getElementById('modal-app-name');
+          const descEl = document.getElementById('modal-app-description');
+          const openBtn = document.getElementById('modal-open-app-btn');
+          const modalMsAlert = document.getElementById('modal-ms-alert');
+
+          currentModalUrl = "https://ifsc.edu.br/en/web/guest/servicos-de-tecnologia#:~:text=emitida%20pelo%20IFSC-,Office%20365%20Educa%C3%A7%C3%A3o,-Utilizando%20a%20conta";
+          nameEl.textContent = "Office 365 Educação &bull; Licença A1 IFSC";
+          
+          descEl.innerHTML = `
+            <div class="space-y-2 text-xs">
+              <p class="font-bold text-gray-900 dark:text-white">Autocadastro com e-mail institucional do IFSC:</p>
+              <ul class="list-disc pl-4 space-y-1.5 text-left text-gray-700 dark:text-gray-300">
+                <li><strong>Servidores (Técnicos e Professores):</strong> Têm direito ao Office 365 Educação realizando o autocadastro diretamente com seu e-mail institucional <code class="font-mono bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded font-bold">@ifsc.edu.br</code>.</li>
+                <li><strong>Alunos e Estudantes:</strong> Têm direito gratuito ao mesmo pacote realizando o autocadastro com o e-mail institucional <code class="font-mono bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded font-bold">@aluno.ifsc.edu.br</code>.</li>
+                <li><strong>Aplicações Inclusas:</strong> Versões online do Word, Excel, PowerPoint, OneNote, Microsoft Teams e OneDrive com 1 TB de armazenamento na nuvem (Office Web sem instalador desktop).</li>
+                <li><strong>Power Apps e Power BI:</strong> Ativados no primeiro acesso ao Microsoft Teams ou abrindo chamado para <a href="mailto:suporte.ti@ifsc.edu.br?subject=Solicita%C3%A7%C3%A3o%20de%20Licen%C3%A7a%20Microsoft%20A1%20IFSC" class="font-bold underline text-[#32a041] dark:text-emerald-400">suporte.ti@ifsc.edu.br</a>.</li>
+                <li><strong>Senha de Acesso:</strong> Definida por você no autocadastro da Microsoft. <span class="font-bold text-red-700 dark:text-red-300">NÃO é a mesma do SIGAA/SIPAC/Intranet</span>.</li>
+              </ul>
+            </div>
+          `;
+
+          iconContainer.innerHTML = `
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
+              <img src="${CDN_ICONS}/microsoft-365.png" alt="Office 365" class="w-10 h-10 object-contain" />
+            </div>
+          `;
+
+          badgeContainer.innerHTML = `
+            <span class="inline-block px-2.5 py-0.5 text-xs font-bold rounded-full text-[#32a041] dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800">
+              Serviços de Tecnologia &bull; Licença A1 IFSC
+            </span>
+          `;
+
+          modalMsAlert.classList.remove('hidden');
+          openBtn.href = currentModalUrl;
+          openBtn.innerHTML = `<span>Ver no Portal IFSC</span><i class="bi bi-box-arrow-up-right text-xs"></i>`;
+
+          modal.classList.remove('pointer-events-none');
+          modal.classList.add('opacity-100');
+          modalContent.classList.remove('scale-95');
+          modalContent.classList.add('scale-100');
+        };
+
+        // Lógica do Modal de Informações
+        const modal = document.getElementById('app-modal');
+        const modalContent = document.getElementById('app-modal-content');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalShareBtn = document.getElementById('modal-share-btn');
+        const modalOpenAppBtn = document.getElementById('modal-open-app-btn');
+        const shareBtnText = document.getElementById('share-btn-text');
+        const modalMsAlert = document.getElementById('modal-ms-alert');
+
+        let currentModalUrl = '';
+
+        window.openAppModal = (appId, event) => {
+          if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          const app = appMap[appId];
+          if (!app) return;
+
+          currentModalUrl = app.url;
+          document.getElementById('modal-app-name').textContent = app.name;
+          document.getElementById('modal-app-description').textContent = app.description;
+          modalOpenAppBtn.href = app.url;
+          modalOpenAppBtn.innerHTML = `<span>Abrir Ferramenta</span><i class="bi bi-box-arrow-up-right text-xs"></i>`;
+
+          // Alerta Microsoft no Modal com Link do IFSC
+          if (app.platform === 'microsoft') {
+            modalMsAlert.classList.remove('hidden');
+          } else {
+            modalMsAlert.classList.add('hidden');
+          }
+
+          const iconContainer = document.getElementById('modal-icon-container');
+          if (app.iconUrl) {
+            iconContainer.innerHTML = `
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
+                <img src="${app.iconUrl}" alt="${app.name}" class="w-10 h-10 object-contain" />
+              </div>
+            `;
+          } else {
+            iconContainer.innerHTML = getIfscIconMarkup(app.iconKey);
+          }
+
+          document.getElementById('modal-badge-container').innerHTML = `
+            <span class="inline-block px-2.5 py-0.5 text-xs font-bold rounded-full text-[#247a30] dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800">
+              ${app.badge || app.categoryName}
+            </span>
+          `;
+
+          shareBtnText.textContent = 'Copiar Link';
+
+          modal.classList.remove('pointer-events-none');
+          modal.classList.add('opacity-100');
+          modalContent.classList.remove('scale-95');
+          modalContent.classList.add('scale-100');
+        };
+
+        const closeModal = () => {
+          modal.classList.remove('opacity-100');
+          modalContent.classList.remove('scale-100');
+          modalContent.classList.add('scale-95');
+          setTimeout(() => {
+            modal.classList.add('pointer-events-none');
+          }, 200);
+        };
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeModal();
+        });
+
+        modalShareBtn.addEventListener('click', () => {
+          if (!currentModalUrl) return;
+          navigator.clipboard.writeText(currentModalUrl).then(() => {
+            shareBtnText.textContent = 'Copiado!';
+            setTimeout(() => { shareBtnText.textContent = 'Copiar Link'; }, 2000);
+          });
+        });
+
+        // Inicialização
+        switchTab('tools');
+      });
+    </script>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
